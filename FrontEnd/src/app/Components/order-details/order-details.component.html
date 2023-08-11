@@ -1,0 +1,185 @@
+<br><br>
+<button type="button" #btn class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+    <i class="fas fa-arrow-up"></i></button>
+
+<div class="container-fluid my-5  d-flex  justify-content-center">
+    <div class="card card-1">
+        <div class="card-header bg-white">
+            <div class="media flex-sm-row flex-column-reverse justify-content-between  ">
+                <div class="col my-auto" style="float: left;float: inline-start;">
+                    <h4 class="mb-0"><strong>Your Orders</strong></h4>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col">
+                    <div class="card card-2" *ngFor="let order of shippingdata;index as i">
+                        <div class="card-body">
+                            <div class="card-header">
+                                <div class="row" style="height: fit-content;">
+                                    <div class="col-4">
+                                        <h5><strong> ORDER PLACED</strong></h5>
+                                        <h5 style="color: #1b1f1f;font-family:Amazon Ember,Arial,sans-serif;">
+                                            {{order.orderPlacedTime|date:'dd MMMM yyyy'}}</h5>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5><strong>TOTAL PRICE</strong></h5>
+                                        <h5 style="color: #1b1f1f;font-family:Amazon Ember,Arial,sans-serif;">
+                                            {{order.totalPrice| currency : 'INR' : 'symbol' : '1.2-2' }}</h5>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5><strong>ORDER</strong></h5>
+                                        <h6 style="color: #1b1f1f;font-family:Amazon Ember,Arial,sans-serif;">
+                                            <strong>#{{order.orderid}}</strong>
+                                        </h6>
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+
+                            <div  (click)="ProductDetails(product.productId)" class="media" id="header" style="padding: 10px;cursor: pointer;"
+                                *ngFor="let product of productidsarrays[i];index as j">
+                                <div class="sq align-self-center">
+
+                                    <img class="img-fluid  my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0"
+                                        src="{{product.imageurl}}" width="135" height="135" />
+                                    <p *ngIf="noofitemsarray[i][j]!=1" matBadge="{{noofitemsarray[i][j]}}"
+                                        matBadgePosition="below after" matBadgeOverlap="true" matBadgeSize="small"
+                                        matBadgeColor="accent"></p>
+
+                                </div>
+                                <div class="media-body my-auto">
+                                    <div class="row  my-auto flex-column flex-md-row">
+                                        <div class="col">
+                                            <h4 style="font-size: 12px;" class="mb-0">{{product.productName}}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <hr  class="my-3 ">
+                            <div class="row">
+                                <div *ngIf="order.status<3" class="col-md-3 mb-3">
+                                    <small>Delivery Expected by:{{DeliveryDate[i]|date:'dd MMMM yyyy HH:mm:ss'}}
+                                        <span><i class=" ml-2 fa fa-refresh" aria-hidden="true"></i></span></small>
+                                </div>
+                                <div *ngIf="order.status==3" class="col-md-3 mb-3">
+                                    <small>Delivered on:{{order.statusTime|date:'dd MMMM yyyy HH:mm:ss'}}</small>
+                                </div>
+                                <div class="col mt-auto">
+
+                                    <div *ngIf="order.status<3" class="media row" style="float: right;">
+                                        <div style="float: right;" class="col-auto">
+                                            <button (click)="TrackOrder(order.buyId)" data-toggle="modal"
+                                                data-target="#exampleModalCenter" type="button"
+                                                class="btn btn-warning btn-rounded">Track your
+                                                order</button>
+                                        </div>
+                                        <div class="col-auto" style="margin-left: 0px;">
+                                            <button (click)="Cancel(order.buyId)" type="button"
+                                                class="btn btn-light btn-rounded">Cancel</button>
+                                        </div>
+
+                                    </div>
+
+                                    <div *ngIf="order.status>=3" class="media row" style="float: right;margin-right: 30px;">
+                                        <div *ngIf="order.status==3" id="pop" style="float: right;" class="col-auto">
+                                            <img class="iconpop" src="../../../assets/delivered.png">
+
+                                        </div>
+                                        <div *ngIf="order.status==4" id="pop" class="col-auto"
+                                            style="margin-left: 0px;">
+
+                                            <img class="iconpop" src="../../../assets/cancelled.png">
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+
+                <div class="d-flex justify-content-center">
+                    <div class="card-pop">
+                        <div class="row d-flex justify-content-center" id="#rowpop">
+                            <div class="col-12">
+                                <ul id="progressbarpop" class="text-center">
+                                    <li *ngIf="popuptrack.status>=0" class="active step0"></li>
+                                    <li *ngIf="(popuptrack.status>=1)&&(popuptrack.status!=4)" class="active step0">
+                                    </li>
+                                    <li *ngIf="(popuptrack.status>=2)&&(popuptrack.status!=4)" class="active step0">
+                                    </li>
+                                    <li *ngIf="(popuptrack.status==3)" class="active step0">
+                                    </li>
+
+                                    <li *ngIf="(popuptrack.status==4)" class="activered step0"></li>
+                                    <li *ngIf="(popuptrack.status<1)&&(popuptrack.status!=4)" class="activered step0">
+                                    </li>
+                                    <li *ngIf="(popuptrack.status<2)&&(popuptrack.status!=4)" class="activered step0">
+                                    </li>
+                                    <li *ngIf="(popuptrack.status<3)&&(popuptrack.status!=4)" class="activered step0">
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="row" id="rowpop">
+
+                                <div class="col1" id="pop">
+                                    <img class="iconpop" src="../../../assets/checklist.png">
+                                    <p class="font-weight-bold">Order<br>Placed</p>
+                                </div>
+                                <div *ngIf="popuptrack.status!=4" class="col1" id="pop">
+                                    <img class="iconpop" src="../../../assets/container.png">
+                                    <p class="font-weight-bold">Order<br>Shipped</p>
+                                </div>
+                                <div *ngIf="popuptrack.status!=4" class="col1" id="pop">
+                                    <img class="iconpop" src="../../../assets/tracking.png">
+                                    <p class="font-weight-bold">Order<br>En Route</p>
+                                </div>
+                                <div *ngIf="popuptrack.status!=4" class="col1" id="pop">
+                                    <img class="iconpop" src="../../../assets/delivery-man.png">
+                                    <p class="font-weight-bold">Order<br>Delivered</p>
+                                </div>
+                                <div *ngIf="popuptrack.status==4" class="col1" id="pop">
+                                    <img class="iconpop" src="../../../assets/cancelled.png">
+                                    <p class="font-weight-bold">Order<br>Cancelled</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<br>

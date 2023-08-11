@@ -1,0 +1,261 @@
+<br>
+<br><br>
+<button type="button" #btn class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<div *ngIf="UserBasedCart.length === 0" style="text-align: center;" class="container">
+  <br><br><br>
+  <h1 style="cursor:wait;text-align: center;color: red;">Your Shopping Bag is Empty!!</h1>
+  <img src="../../../assets/emptycart.jpg"><br>
+
+  <button routerLink="/products" style="width: 20%;" type="button" class="btn btn-outline-dark">continue
+    shopping</button>
+</div>
+
+<section *ngIf="UserBasedCart.length > 0" class="h-100 gradient-custom">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center my-4">
+
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Cart - {{UserBasedCart.length}} items</h5>
+          </div>
+          <div class="card-body">
+
+
+            <div class="row" *ngFor="let product of UserBasedCart;index as i ">
+              <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                <div>
+                  <input style="margin-left: -15px ;" class="form-check-input" (click)="SelectItems(i)" type="checkbox"
+                    id="checkboxNoLabel" value="" aria-label="..." checked />
+                </div>
+                <div (click)="ProductDetails(product.productId)" style="cursor: pointer;" class="bg-image hover-overlay hover-zoom ripple rounded mb-3" data-mdb-ripple-color="light">
+                  <img src="{{product.imageurl}}" width="150px" height="150px" class="imgicon" />
+                  <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                  </a>
+                </div>
+
+              </div>
+
+              <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+
+                <p (click)="ProductDetails(product.productId)" class="text-truncate" style="max-width: 300px;font-size: 14px;cursor: pointer;">
+                  <strong>{{product.productName}}</strong>
+                </p>
+                <p>Category: {{product.productCategory}}</p>
+
+                <button *ngIf="logincheck==true" type="button" (click)="DeleteFromCart(product.productId)"
+                  class="btn btn-outline-info btn-sm me-1 mb-2" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip"
+                  title="Remove item">
+                  <img style="cursor:pointer;" class="imgicon trash" src="../../../assets/trash.png">
+                </button>
+                <button *ngIf="logincheck==false" type="button" (click)="DeleteFromtempCart(product.productId)"
+                  class="btn btn-outline-info btn-sm me-1 mb-2" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip"
+                  title="Remove item">
+                  <img style="cursor:pointer;" class="imgicon trash" src="../../../assets/trash.png">
+                </button>
+
+              </div>
+
+              <div *ngIf="logincheck==true" class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+
+                <div *ngIf="SelectArray[i]==true" class="d-flex mb-4 button">
+
+                  <button *ngIf="QuentityCount[i]>1" class="btn btn-primary px-3 me-2"
+                    (click)="Decrement(i,QuentityCount[i])">
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+                  <button *ngIf="QuentityCount[i]==1" class="btn btn-primary px-3 me-2" disabled>
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+
+                  <div class="form-outline">
+                    <input readonly style="width: 45px;align-items: center;text-align: center;"
+                      value="{{QuentityCount[i]}}" class="form-control" />
+                    <label class="form-label" for="form1">Quantity</label>
+                  </div>
+                  <button *ngIf="QuentityCount[i]<product.noofstocks" class="btn btn-primary px-3 ms-2"
+                    (click)="Increment(i,QuentityCount[i])">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </button>
+                  <button *ngIf="QuentityCount[i]>=product.noofstocks" class="btn btn-primary px-3 ms-2" disabled>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </button>
+
+                </div>
+
+                <div *ngIf="SelectArray[i]==false" class="d-flex mb-4 button">
+
+                  <button disabled class="btn btn-primary px-3 me-2" disabled>
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+
+                  <div class="form-outline">
+                    <input readonly style="width: 45px;text-align: center;" value="{{QuentityCount[i]}}"
+                      class="form-control" />
+                    <label class="form-label" for="form1">Quantity</label>
+                  </div>
+
+
+                  <button class="btn btn-primary px-3 ms-2" disabled>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </button>
+
+                </div>
+                <p id="totalcost" class="text-start text-md-center">
+                  <span id="price">Price:₹{{product.productPrice}}</span>
+                </p>
+
+              </div>
+
+              <div *ngIf="logincheck==false" class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+
+                <div *ngIf="SelectArray[i]==true" class="d-flex mb-4 button">
+
+                  <button *ngIf="QuentityCount[i]>1" class="btn btn-primary px-3 me-2"
+                    (click)="DecrementWithoutLogin(product.productId)">
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+                  <button *ngIf="QuentityCount[i]==1" class="btn btn-primary px-3 me-2" disabled>
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+
+                  <div class="form-outline">
+                    <input readonly style="width: 45px;align-items: center;text-align: center;"
+                      value="{{QuentityCount[i]}}" class="form-control" />
+                    <label class="form-label" for="form1">Quantity</label>
+                  </div>
+                  <button *ngIf="QuentityCount[i]<product.noofstocks" class="btn btn-primary px-3 ms-2"
+                    (click)="IncrementWithoutLogin(product.productId)">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </button>
+                  <button *ngIf="QuentityCount[i]>=product.noofstocks" class="btn btn-primary px-3 ms-2" disabled>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </button>
+
+                </div>
+
+                <div *ngIf="SelectArray[i]==false" class="d-flex mb-4 button">
+
+                  <button disabled class="btn btn-primary px-3 me-2" disabled>
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+
+                  <div class="form-outline">
+                    <input readonly style="width: 45px;text-align: center;" value="{{QuentityCount[i]}}"
+                      class="form-control" />
+                    <label class="form-label" for="form1">Quantity</label>
+                  </div>
+                  <button class="btn btn-primary px-3 ms-2" disabled>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <p id="totalcost" class="text-start text-md-center">
+                  <span id="price">Price:₹{{product.productPrice}}</span>
+                </p>
+
+              </div>
+
+              <hr *ngIf="i<UserBasedCart.length-1" style="margin-left: -4.5px;width: 98.2%;">
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <p><strong>Expected shipping delivery</strong></p>
+            <p class="mb-0">{{originalDateofdelivery|date:'dd/MM/yyyy'}} - {{incrementedDate|date:'dd/MM/yyyy'}}</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Summary</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Total Products Quantity
+                <span>{{totalquantity}}</span>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                <div>
+                  <strong>Total MRP</strong>
+                  <strong>
+                    <p class="mb-0"></p>
+                  </strong>
+                </div>
+                <span><strong>₹{{totalmrp}}</strong></span>
+              </li>
+            </ul>
+
+            <button *ngIf="logincheck==true" (click)="CheckOut()" type="button"
+              class="btn btn-primary btn-lg btn-block">
+              Go to checkout
+            </button>
+            <button *ngIf="logincheck==false" (click)="CheckOutWithOutLogin()" type="button"
+              class="btn btn-primary btn-lg btn-block">
+              Proceed to Buy
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br *ngIf="logincheck==true">
+<div *ngIf="logincheck==true" class="container">
+  <button style="float: right;background-color: red;" class="btn btn-primary" (click)="Trashvalue()"><mat-icon
+      style="color: black;">delete_outline</mat-icon></button>
+
+
+
+
+
+  <div *ngIf="Trash">
+    <table *ngIf="UserbasedTrash.length>0" class="table table-striped table-hover;">
+      <thead>
+        <th>productId </th>
+        <th>productCategory</th>
+        <th> productName </th>
+        <th>productPrice </th>
+        <th>noofstocks </th>
+        <th>productDescription </th>
+        <th></th>
+
+        <th></th>
+
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let product of UserbasedTrash ">
+          <td>{{product.productId}} </td>
+          <th>{{product.productCategory}}</th>
+          <td>{{product.productName}} </td>
+          <td>{{product.productPrice}} </td>
+          <td>{{product.noofstocks}} </td>
+
+          <td>{{product.productDescription}} </td>
+
+
+          <td><button class="btn btn-primary" (click)="DeleteFromTrash(product.productId)">Delete</button> </td>
+
+          <td><button class="btn btn-primary" (click)="Restore(product.productId)">Restore</button> </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<div *ngIf="Trash">
+  <h2 style="margin-left: 600px;" *ngIf="UserbasedTrash.length==0"> Your Trash is Empty</h2>
+</div>

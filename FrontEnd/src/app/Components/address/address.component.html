@@ -1,0 +1,83 @@
+<br>
+<div class="container mt-5">
+
+    <div class="row">
+
+        <div class="col-md-3" *ngFor="let address of UserBasedAddresses;index as i">
+            <div *ngIf="i<UserBasedAddresses.length-1" class="card p-3">
+
+                <span id="fullname">{{UserBasedAddresses[i].fullName}}</span>
+
+                <div class="d-flex flex-column ml-2 address">
+
+                    <span class="text-black-50">{{UserBasedAddresses[i].houseNo}}</span>
+                    <span>{{UserBasedAddresses[i].area}}</span>
+                    <span>{{UserBasedAddresses[i].landMark}}</span>
+                    <span>{{UserBasedAddresses[i].city}}</span>
+                    <span>{{UserBasedAddresses[i].state}}</span>
+                    <span>{{UserBasedAddresses[i].pincode}}</span>
+                    <span>{{UserBasedAddresses[i].country}}</span>
+                    <span>Phone Number:{{UserBasedAddresses[i].mobileNo}}</span>
+                </div>
+                <div style="text-align: center;margin-bottom: 1vh;max-width: fit-content;">
+                    <a style="color: rgb(44, 104, 242);cursor: pointer;"
+                        (click)="EditAddress(UserBasedAddresses[i].addressId)">Edit</a> &nbsp;|&nbsp;
+                    <a href="address" data-toggle="modal" data-target="#exampleModalCenter"
+                        (click)="DeleteAddress(UserBasedAddresses[i].addressId)">Delete</a>&nbsp;
+                    <a *ngIf="UserBasedAddresses[i].isDefault!=true" style="color: rgb(44, 104, 242);cursor: pointer;"
+                        (click)="SetAsDefaultAddress(UserBasedAddresses[i].addressId)">|&nbsp;Set as Default</a>
+                </div>
+
+            </div>
+            <div *ngIf="(i==UserBasedAddresses.length-1&&(UserBasedAddresses.length-1)%4==0)" class="card extra"
+                (click)="AddAddress()">
+
+                <div class="d-flex flex-column ml-2">
+
+                    <img src="../../../assets/plus.png">
+                    <h4 style="text-align: center;" class="text-black-40">Add Address</h4>
+                </div>
+
+
+            </div>
+            <div *ngIf="(i==UserBasedAddresses.length-1&&(UserBasedAddresses.length-1)%4!=0)" class="card extraforodd"
+                (click)="AddAddress()">
+
+                <div class="d-flex flex-column ml-2">
+
+                    <img class="imgforodd" src="../../../assets/plus.png">
+                    <h4 style="text-align: center;" class="text-black-40">Add Address</h4>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2>Delete Confirmation</h2>
+                Are you sure want to delete this address
+            </div>
+            <div class="row modal-footer">
+                <div class="col" style="margin-left:15%;">
+
+                    <button style="color: #727272;font-weight: 500;" type="button" class="btn btn-light" #closeBtn
+                        data-dismiss="modal">Cancel</button>
+
+                </div>
+
+                <div class="col" style="margin-right:20%;">
+                    <button style="color:red;font-weight: 500;" type="button" class="btn btn-light"
+                        (click)="ConfirmDelete()">Delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

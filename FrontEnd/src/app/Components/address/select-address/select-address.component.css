@@ -1,0 +1,85 @@
+#maincard {
+
+    margin-left: 50px;
+    width: 800px;
+}
+
+.container {
+    margin-left: 40px;
+}
+
+#sidecard {
+    width: 300px;
+    /* margin-right: 10px; */
+    margin-left: 300px;
+}
+
+#card-body {
+
+    border-style: solid;
+    border-radius: 6px;
+    border: solid rgba(0, 0, 0, 0.5);
+    ;
+}
+
+.outercard {
+    width: 100%;
+    border-bottom: 1px solid black;
+
+}
+
+.card-title {
+    
+    float: left;
+   
+}
+
+.card-header {
+    color: red;
+    text-align: left;
+    font-weight: bold;
+    font-size: large;
+}
+
+
+
+.useaddress{
+    margin-left: 50px;
+    background-color: gold;
+    color: black;
+    text-transform: none;
+    border-color: gold;
+}
+#flexRadioDefault1{
+    border-color: black;
+    width: 15px;
+    height: 15px;
+    margin-top: 8px;
+}
+.modal-content{
+    max-width: 128%;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 120%;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
+}
+#footer{
+    margin-left: 0px;
+    
+    width: 100%;
+}
+#content
+{
+    width: 400px;
+    border-radius: 0px;
+}

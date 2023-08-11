@@ -1,0 +1,192 @@
+<br>
+<br><br><br><br>
+<div class="row container">
+
+    <div class="col-sm-6">
+        <div class="card text-center" id="maincard">
+            <div class="card-header">
+                Select a Delivery Address
+            </div>
+            <div class="card-body" id="outercard" *ngFor="let address of addresses;index as i">
+                <div class="card-body" id="card-body">
+
+                    <h2 class="card-title">&nbsp;
+                        <input *ngIf="DefaultCheckArray[i]==false" (click)="AddressSelect(i)" class="form-check-input"
+                            type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                        <input *ngIf="DefaultCheckArray[i]==true" (click)="AddressSelect(i)" class="form-check-input"
+                            type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked />
+                        &nbsp;{{address.fullName}},<span>{{address.houseNo}},</span>
+                        <span>{{address.area}}</span>
+                    </h2>
+
+
+                    <div style="margin-right: 500px;margin-bottom: 0px;">
+                        <h3>{{address.city}},<span>{{address.country}},</span><span>{{address.state}}</span></h3>
+                    </div>
+                    <div style="margin-right: 530px;">
+                        <h5>{{address.pincode}},<span>Phone no:{{address.mobileNo}}</span></h5>
+                    </div>
+
+                    <div style="float: left;margin-left: 20px;margin-top: 0px;">
+                        <a (click)="Editaddress(address.addressId)" data-toggle="modal" data-target="#modalContactForm"
+                            style="color: rgb(44, 104, 242);cursor: pointer;">Edit</a> &nbsp;|&nbsp;
+                        <a (click)="DeleteAddress(address.addressId)" style="color: rgb(44, 104, 242);cursor: pointer;" data-toggle="modal" data-target="#exampleModalCenter">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a *ngIf="address.isDefault==true" style="color: red;font-weight: 500;" >Default address</a>&nbsp;
+                         
+                    </div>
+                    <br>
+
+
+                </div>
+
+            </div>
+
+            <button routerLink="/addaddress" class="addbutton"
+                style="width: 20%;margin-left: 10px; text-transform: none;" type="button"
+                class="btn btn-primary btn-rounded">Add address</button>
+            <div *ngIf="selectedaddress!=0" class="card-footer text-muted">
+                <button (click)="PlaceOrder()" type="button" class="btn  btn-rounded useaddress">Use this address
+                </button>
+            </div>
+            <div *ngIf="selectedaddress==0" class="card-footer text-muted">
+                <button (click)="PlaceOrder()" type="button" class="btn  btn-rounded useaddress" disabled>Use this
+                    address </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="card" id="sidecard">
+            <div class="card-body">
+                <button *ngIf="selectedaddress!=0" (click)="PlaceOrder()" type="button"
+                    class="btn  btn-rounded useaddress">Use this address </button>
+                <button *ngIf="selectedaddress==0" (click)="PlaceOrder()" type="button"
+                    class="btn  btn-rounded useaddress" disabled>Use this address </button>
+                <br>
+                <h6 style="text-align: center;" style="font-size: 13px;" class="card-text">Choose an address to continue
+                    checking out.</h6>
+                <hr>
+                <h1 style="font-weight: bold;">Order Summary</h1>
+                <h3 style="font-weight:400;">items - {{itemscount}} </h3>
+                <h3 style="font-size: small;font-weight:400;">Expected Delivery -{{date|date:'dd/MM/yyyy HH:mm:ss'}}
+                </h3>
+                <hr>
+                <h1 style="font-weight: bold;color: rgb(154, 21, 21);">Order Total- ₹{{TotalPrice}}</h1>
+
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+
+<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Address</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form [formGroup]="formValue">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="name">Full Name:</label>
+                            <input formControlName="fullName" class="form-control" type="text" id="name" name="name"
+                                required>
+                        </div>
+                        <div class="col-6">
+                            <label for="mobileno">Mobile No:</label>
+                            <input formControlName="mobileNo" class="form-control" type="text" id="mobileno"
+                                placeholder="10-digit Mobile NUmber" name="mobileno" required>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="country">Country:</label>
+                            <input formControlName="country" class="form-control" type="text" id="country"
+                                name="country" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="mobileno">State:</label>
+                            <input formControlName="state" class="form-control" type="text" id="mobileno"
+                                name="mobileno" required>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div>
+                            <label for="mobileno">House No,Building,Apartment:</label>
+                            <textarea formControlName="houseNo" class="form-control" type="text" id="mobileno"
+                                name="mobileno" required></textarea>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="pincode">Area,Street,Village:</label>
+                            <input formControlName="area" class="form-control" type="text" id="pincode" name="pincode"
+                                required>
+                        </div>
+                        <div class="col-6">
+                            <label for="mobileno">Landmark:</label>
+                            <input formControlName="landMark" class="form-control" type="text" id="mobileno"
+                                name="mobileno" required>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="pincode">Town/City:</label>
+                            <input formControlName="city" class="form-control" type="text" id="pincode" name="pincode"
+                                required>
+                        </div>
+                        <div class="col-6">
+                            <label for="pincode">PinCode:</label>
+                            <input formControlName="pincode" class="form-control" type="text" id="pincode"
+                                placeholder="6 digits Pin Code" name="pincode" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center">
+                <button (click)="UpdateAddress()" class="btn btn-outline-success">Save Address</button>
+                <button type="button" class="btn btn-outline-danger" #closeBtn
+                data-dismiss="modal">Cancel</button>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="content">
+            <div class="modal-body">
+                <h2>Delete Confirmation</h2>
+                Are you sure want to delete this address
+            </div>
+            <div class="row modal-footer" id="footer">
+                <div class="col" style="margin-left:15%;">
+
+                    <button style="color: #727272;font-weight: 500;" type="button" class="btn btn-light" #closeBtnDelete
+                        data-dismiss="modal">Cancel</button>
+
+                </div>
+
+                <div class="col" style="margin-right:20%;">
+                    <button (click)="ConfirmDelete()" style="color:red;font-weight: 500;" type="button" class="btn btn-light"
+                     >Delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

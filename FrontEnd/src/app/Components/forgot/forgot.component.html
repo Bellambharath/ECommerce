@@ -1,0 +1,28 @@
+<br>
+<br>
+<br>
+<br>
+<div class="bgimage">
+
+    <div style="margin-left:500px; margin-right: 450px;">
+    <div class="card" style="padding:20px;border-color: black;" >
+    <div class="data-form">
+        <form #bform="ngForm" (ngSubmit)="onsubmit();bform.reset">
+            
+            <div class="form-group" >
+                <label for="security Question">
+                    <h5>Who is your Best Friend ?</h5>
+                </label><br />
+                <input type="text" style="width: 230px;"  name="security Question" placeholder="Enter your security answer" [(ngModel)]="answer"><br>
+                <div class="clear"></div>
+    
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-left:70px;">Submit</button>
+    
+        </form>
+       
+    
+    </div>
+    </div>
+    
+    

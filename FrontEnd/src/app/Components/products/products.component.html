@@ -1,0 +1,98 @@
+<br>
+<br>
+<br>
+<br>
+
+<nav class="navbar navbar-expand-xl navbarcolor  fixed-top" style="margin-top:70px;background-color:white">
+	<div>
+		<select
+			style="width: 200px;height: 30px; color: black; margin-left: 1000px;font-family: 'Times New Roman', Times, serif;"
+			(change)="sortDropdown($event)">
+			<option>Sort By Price</option>
+			<option>Price:Low to High</option>
+			<option>Price:High to Low</option>
+		</select>
+		<br>
+		<br>
+		<div (change)="selectChange($event)" style="margin-left:150px"> 
+			<button class="weap btn btn-light"
+				style="font-family: 'Times New Roman', Times, serif;margin-right: 10px;border:solid gray"
+				*ngFor="let d of dropdown" value="{{d}}" id="one" (click)="selectChange($event)"> {{d}} &nbsp; 
+			</button>
+		</div>
+	</div>
+</nav>
+
+<br>
+<br>
+<br><br><br><br>
+
+
+<div class="container-fluid">
+	<div class="row">
+
+		<div class="col-lg-4 col-md-6 body"
+			*ngFor="let product of products | filter:searchkey:'productName';index as i">
+
+			<div class="product-content product-wrap clearfix">
+				<div class="row">
+					<div class="col-md-5 col-sm-12 col-xs-12">
+						<div (click)="onClick(product.productId,rating[i],halfstar[i])"
+							class="product-image text-center" [style.background-image]="'url(' + product.imageurl + ')'"
+							style="background-size:100%;background-position:center;background-repeat:no-repeat;">
+						</div>
+
+					</div>
+					<div class="col-md-7 col-sm-6 col-xs-12">
+						<div (click)="onClick(product.productId,rating[i],halfstar[i])" class="product-deatil">
+							<h5 class="name">
+								<a href="#">
+									<span class="d-inline-block text-truncate"
+										style="max-width: 200px;color: black;font-size: 20px;">
+										{{product.productName}}
+									</span>
+									<span>{{product.productCategory}}</span>
+								</a>
+							</h5>
+							<p class="price-container ">
+								<span>₹{{product.productPrice}}
+									<div class="star-rating">
+										<ul class="list-inline">
+											<ngb-rating [max]="rating[i]" [rate]="rating[i]"
+												[readonly]="true"></ngb-rating>
+											<li *ngIf="halfstar[i]!=0" class="list-inline-item"
+												style="padding-left:5px"><i class="fa fa-star-half-o"></i></li>
+											<ngb-rating *ngIf="halfstar[i]!=0" [max]="5-(rating[i]+1)"
+												[readonly]="true"></ngb-rating>
+											<ngb-rating *ngIf="halfstar[i]==0" [max]="5-(rating[i])"
+												[readonly]="true"></ngb-rating>
+										</ul>
+
+									</div>
+								</span>
+							</p>
+
+							<span class="tag1"></span>
+						</div>
+						<div class="description"><span class="d-inline-block text-truncate " style="max-width: 200px;">
+								{{product.productDescription}}
+							</span>
+						</div>
+						<div class="product-info smart-form">
+							<div class="row">
+								<div *ngIf="rolecheck==true&&logincheck==true" class="col-md-6 col-sm-6 col-xs-6">
+									<a class="btn btn-warning" (click)="AddToCart(product)">Add to Cart</a>
+								</div>
+								<div *ngIf="logincheck==false" class="col-md-6 col-sm-6 col-xs-6">
+									<a class="btn btn-warning" (click)="CartWithOutLogin(product)">Add to Cart</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>

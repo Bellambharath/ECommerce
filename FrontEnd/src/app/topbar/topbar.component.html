@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-xl navbarcolor fixed-top">
+	<a style="font-size:23px ;color: white;" class="navbar-brand "><img class="shopingicon" style="margin-top: 0px;"
+			src="../../assets/bharath.png"><span class="EBGaramond" style="margin-left: 20px">ShopeEase</span></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#colNav">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse navbartop" id="colNav" style="color:white">
+		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			<li class="nav-item">
+				<a class="nav-link text" href="products"><i class="fa fa-cube" aria-hidden="true"></i>Products </a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link text" *ngIf="auth.getRole()" href="admin"><i class="fa fa-user"
+						aria-hidden="true"></i>AdminPanel</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link text" *ngIf="auth.getRole()" href="shipment"><i class="fa fa-truck"
+						aria-hidden="true"></i>Orders</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link text" *ngIf="rolecheck==true" href="myorders"><i class="fa fa-gift"
+						aria-hidden="true"></i>
+					MyOrders</a>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right justify-content-center ">
+
+
+			<li>
+				<div class="form-group" style="margin-right: 300px;margin-top: 15px;">
+					<input style="width: 400px;" type="text" class="form-control" [(ngModel)]="searchTerm"
+						(keyup)="search($event)" placeholder="search">
+
+				</div>
+			</li>
+			<li class="nav-item">
+				<a style="height: 10px;margin-top: 10px;" class="nav-link login" *ngIf="!auth.isLoggedin()" href="login">
+					<i class="fa fa-sign-in" aria-hidden="true">Login</i>
+				</a>
+			</li>
+			<li *ngIf="usercheck" class="nav-item">
+				
+				<a style="height: 10px;margin-top: 18px;margin-right: 70px;" class="nav-link login" *ngIf="auth.isLoggedin()" (click)="onLogOut()">
+					<i class="fa fa-sign-out" aria-hidden="true"><span>Logout</span></i>
+					
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link text" *ngIf="!auth.getRole()" href="cart" style="font-size:35px;"><i
+						class="fa fa-shopping-cart" aria-hidden="true"></i>
+					<div class="badge bg-danger" style="font-size:11px"> {{count}}</div>
+				</a>
+			</li>
+			&nbsp;&nbsp;&nbsp;
+
+
+
+
+			<li *ngIf="auth.isLoggedin()&&!usercheck" class="nav-item" style="font-size:25px;margin-top: 20px;">
+				<div class="dropdown show dropleft">
+					<a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-user-circle" aria-hidden="true"></i>
+					</a>
+					&nbsp;&ensp;
+					&nbsp;&nbsp;
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						<a class="dropdown-item  " href="profile"><i class="fa fa-user-circle" aria-hidden="true"></i>
+							MyProfile</a>
+						<hr>
+						<a class="dropdown-item" href="address"><i class="fa fa-address-book"
+								aria-hidden="true"></i>Saved Addresses</a>
+
+						<hr>
+						<a class="dropdown-item" (click)="onLogOut()"><span><img class="icon"
+									src="../../assets/turn-off.png">Logout</span></a>
+					</div>
+				</div>
+
+			</li>
+		</ul>
+
+	</div>
+</nav>

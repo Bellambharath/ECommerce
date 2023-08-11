@@ -1,0 +1,74 @@
+
+<br>
+<br>
+
+  
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-12 col-xl-10">
+                <div class="card shadow-0 border rounded-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                    <img style="cursor:pointer;" class="imgicon" (click)="goback()"
+                                    src="../../../assets/back-arrow.png">
+                                    <img class="imgdisp" src="{{productdetails.imageurl}}" class="w-100" />
+                                    <a href="#!">
+                                        <div class="hover-overlay">
+                                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-xl-6">
+                                <h4>{{productdetails.productName}}</h4>
+                                <h5>{{productdetails.productCategory}}</h5>
+                                <div class="star-rating">
+                                    <ul class="list-inline">
+                                        <ngb-rating [max]="rating" [rate]="rating"
+                                            [readonly]="true"></ngb-rating>
+                                        <li *ngIf="halfstar!=0" class="list-inline-item"
+                                            style="padding-left:5px"><i class="fa fa-star-half-o"></i></li>
+                                        <ngb-rating *ngIf="halfstar!=0" [max]="5-(rating+1)"
+                                            [readonly]="true"></ngb-rating>
+                                        <ngb-rating *ngIf="halfstar==0" [max]="5-(rating)"
+                                            [readonly]="true"></ngb-rating>
+                                    </ul>
+
+                                </div>
+                                <div class="mt-1 mb-0 text-muted medium">
+                                    <span>
+                                        {{productdetails.productDescription}}
+                                    </span>
+                                    
+                                </div>
+                                
+                            </div>
+                            <div  class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start ">
+                                <div class="d-flex flex-row align-items-center mb-1" >
+                                    <h4 class="mb-1 me-1">₹{{productdetails.productPrice}}</h4>
+                                    <span class="text-danger"><s>₹{{productdetails.productPrice+(productdetails.productPrice/10)}}</s></span>
+                                </div>
+                                <h6 class="text-success" >Free shipping</h6>
+                                <div *ngIf="rolecheck==true&&logincheck==true" (click)="AddToCart(productdetails)" class="d-flex flex-column mt-4" >
+                                    <button style="margin-top: 55px;" class="btn btn-primary btn-sm" 
+                                    type="button">Add to Cart</button>
+                                    
+                                </div>
+                                <div *ngIf="logincheck==false"(click)="AddToCart(productdetails)" class="d-flex flex-column mt-4" >
+                                    <button style="margin-top: 55px;" class="btn btn-primary btn-sm" 
+                                    type="button">Add to Cart</button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
