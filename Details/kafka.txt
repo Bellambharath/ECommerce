@@ -1,0 +1,126 @@
+//public List<string> Consumer(string topic)
+        //{
+        //    List<string> messages = new List<string>();
+
+        //    using (var c = new ConsumerBuilder<Null, string>(new ConsumerConfig
+        //    {
+        //        BootstrapServers = "localhost:9092",
+        //        GroupId = "console-consumer-83024",
+        //        AutoOffsetReset = AutoOffsetReset.Latest
+        //    }).Build())
+        //    {
+        //        c.Subscribe(topic);
+
+        //        CancellationTokenSource cts = new CancellationTokenSource();
+        //        Console.CancelKeyPress += (_, e) =>
+        //        {
+        //            e.Cancel = true;
+        //            cts.Cancel();
+        //        };
+
+        //        try
+        //        {
+        //            while (true)
+        //            {
+
+        //                var cr = c.Consume(cts.Token);
+        //                messages.Add(cr.Message.Value.ToString());
+
+        //                if (messages.Count >= 2)
+        //                {
+        //                    break;
+        //                }
+        //            }
+        //        }
+        //        catch (OperationCanceledException)
+        //        {
+        //            c.Close();
+        //        }
+        //    }
+        //    return messages;
+
+        //}
+
+
+
+public List<string> Consumer()
+        {
+            string topic = txt_topicname.Text;
+            List<string> messages = new List<string>();
+
+            using (var c = new ConsumerBuilder<Null, string>(new ConsumerConfig
+            {
+                BootstrapServers = "localhost:9092",
+                //GroupId = "console-consumer-83024",
+                GroupId = "gid-consumers",
+                AutoOffsetReset = AutoOffsetReset.Latest
+            }).Build())
+            {
+                c.Subscribe(topic);
+
+                CancellationTokenSource cts = new CancellationTokenSource();
+                Console.CancelKeyPress += (_, e) =>
+                {
+                    e.Cancel = true;
+                    cts.Cancel();
+                };
+
+                try
+                {
+                    while (!cts.IsCancellationRequested)
+                    {
+                        try
+                        {
+                            var cr = c.Consume(cts.Token, TimeSpan.FromSeconds(1), false); // add a timeout of 1 second and disable background heartbeat
+                                                                                          
+                            messages.Add(cr.Message.Value.ToString());
+
+
+                            var timeout = TimeSpan.FromSeconds(5);
+
+                            var watermarkOffsets = c.QueryWatermarkOffsets(new TopicPartition(topic, cr.Partition), timeout);
+
+                            //txt_messagefromkafka.Text=watermarkOffsets.Low.Value.ToString();
+                            MessageBox.Show($"low val{watermarkOffsets.Low.Value.ToString()}");
+                            MessageBox.Show($"high val{watermarkOffsets.High.Value.ToString()}");
+                            var remainingMessages = watermarkOffsets.High - cr.Offset.Value - 1;
+                            if (remainingMessages == 0)
+                            {
+                                cts.Cancel();
+                            }
+                        }
+                        catch (ConsumeException e)
+                        {
+                            if (e.Error.Code != ErrorCode.InvalidSessionTimeout) // ignore timeout exceptions
+                            {
+                                Console.WriteLine($"Error occured: {e.Error.Reason}");
+                            }
+                        }
+                    }
+                    //while (true)
+                    //{
+                    //    var cr = c.Consume(cts.Token);
+                    //    messages.Add(cr.Message.Value.ToString());
+
+                    //    var timeout = TimeSpan.FromSeconds(5);
+
+                    //    var watermarkOffsets = c.QueryWatermarkOffsets(new TopicPartition(topic, cr.Partition), timeout);
+
+                    //    //txt_messagefromkafka.Text=watermarkOffsets.Low.Value.ToString();
+                    //    MessageBox.Show($"low val{watermarkOffsets.Low.Value.ToString()}");
+                    //    MessageBox.Show($"high val{watermarkOffsets.High.Value.ToString()}");
+                    //    var remainingMessages = watermarkOffsets.High - cr.Offset.Value - 1;
+                    //    if (remainingMessages == 0)
+                    //    {
+                    //        cts.Cancel();
+                    //    }
+                    //}
+                }
+                catch (OperationCanceledException)
+                {
+                    c.Close();
+                }
+            }
+
+            return messages;
+        }

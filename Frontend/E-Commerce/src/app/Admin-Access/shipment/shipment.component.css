@@ -1,0 +1,40 @@
+body {
+  width: 100%;
+  background: #eecda3;
+  background: -webkit-linear-gradient(to right, #eecda3, #ef629f);
+  background: linear-gradient(to right, #eecda3, #ef629f);
+  min-height: 100vh;
+}
+
+.btn-success,
+.btn-danger {
+  background-color: aliceblue;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  align-items: center;
+
+}
+
+.table>:not(caption)>*>* {
+  padding: .5rem 6.5rem;
+  background-color: var(--bs-table-bg);
+  border-bottom-width: var(--bs-border-width);
+  box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+
+.table-container {
+  height: 580px;
+  /* set a fixed height */
+  overflow: auto;
+  /* enable scrolling */
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
+}

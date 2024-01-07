@@ -1,0 +1,137 @@
+<br><br><br><br>
+
+<div *ngIf="check==false" class="address-container">
+    <form #testForm="ngForm" (ngSubmit)="AddAddress();testForm.reset();">
+        <div class="row">
+            <div class="col-6">
+                <label for="name">Full Name:</label>
+                <input [(ngModel)]="address.fullName" type="text" id="name" name="name" required>
+            </div>
+            <div class="col-6">
+                <label for="mobileno">Mobile No:</label>
+                <input [(ngModel)]="address.mobileNo" type="text" id="mobileno" placeholder="10-digit Mobile NUmber"
+                    name="mobileno" required>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="country">Country:</label>
+                <input [(ngModel)]="address.country" type="text" id="country" name="country" required>
+            </div>
+            <div class="col-6">
+                <label for="mobileno">State:</label>
+                <input [(ngModel)]="address.state" type="text" id="mobileno" name="mobileno" required>
+            </div>
+
+        </div>
+        <div class="row">
+            <div>
+                <label for="mobileno">House No,Building,Apartment:</label>
+                <textarea [(ngModel)]="address.houseNo" type="text" id="mobileno" name="mobileno" required></textarea>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="pincode">Area,Street,Village:</label>
+                <input [(ngModel)]="address.area" type="text" id="pincode" name="pincode" required>
+            </div>
+            <div class="col-6">
+                <label for="mobileno">Landmark:</label>
+                <input [(ngModel)]="address.landMark" type="text" id="mobileno" name="mobileno" required>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="pincode">Town/City:</label>
+                <input [(ngModel)]="address.city" type="text" id="pincode" name="pincode" required>
+            </div>
+            <div class="col-6">
+                <label for="pincode">PinCode:</label>
+                <input [(ngModel)]="address.pincode" type="text" id="pincode" placeholder="6 digits Pin Code"
+                    name="pincode" required>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <div class="form-check form-check-inline">
+                    <br>
+                    <input (click)="DefaultAddressSelect()" class="form-check-input" type="checkbox"
+                        id="inlineCheckbox1" value="option1" />
+                    <label class="form-check-label" style="font-weight: 500;" for="inlineCheckbox1">Mark as default
+                        address</label>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <input style="align-items: center;" type="submit" value="Save">
+    </form>
+</div>
+
+<div *ngIf="check==true" class="address-container">
+    <form [formGroup]="formValue">
+        <div class="row">
+            <div class="col-6">
+                <label for="name">Full Name:</label>
+                <input formControlName="fullName" class="form-control" type="text" id="name" name="name" required>
+            </div>
+            <div class="col-6">
+                <label for="mobileno">Mobile No:</label>
+                <input formControlName="mobileNo" class="form-control" type="text" id="mobileno"
+                    placeholder="10-digit Mobile NUmber" name="mobileno" required>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="country">Country:</label>
+                <input formControlName="country" class="form-control" type="text" id="country" name="country" required>
+            </div>
+            <div class="col-6">
+                <label for="mobileno">State:</label>
+                <input formControlName="state" class="form-control" type="text" id="mobileno" name="mobileno" required>
+            </div>
+
+        </div>
+        <div class="row">
+            <div>
+                <label for="mobileno">House No,Building,Apartment:</label>
+                <textarea formControlName="houseNo" class="form-control" type="text" id="mobileno" name="mobileno"
+                    required></textarea>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="pincode">Area,Street,Village:</label>
+                <input formControlName="area" class="form-control" type="text" id="pincode" name="pincode" required>
+            </div>
+            <div class="col-6">
+                <label for="mobileno">Landmark:</label>
+                <input formControlName="landMark" class="form-control" type="text" id="mobileno" name="mobileno"
+                    required>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="pincode">Town/City:</label>
+                <input formControlName="city" class="form-control" type="text" id="pincode" name="pincode" required>
+            </div>
+            <div class="col-6">
+                <label for="pincode">PinCode:</label>
+                <input formControlName="pincode" class="form-control" type="text" id="pincode"
+                    placeholder="6 digits Pin Code" name="pincode" required>
+            </div>
+        </div>
+
+        <br><br>
+        <div style="text-align: center;">
+            <input class="btn btn-primary" style="align-items: center;width:160px;" type="submit" value="Save Changes"
+                (click)="UpdateAddress()">
+        </div>
+    </form>
+</div>

@@ -1,0 +1,210 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState=true" (closed)="panelOpenState=false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    
+                </mat-panel-title>
+                <mat-panel-description>
+                    Add Products
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div *ngIf="errormessage!=null">{{errormessage}}</div>
+            <div class="data-form">
+                <div>
+                    <form #productForm="ngForm" (ngSubmit)="AddProduct(); productForm.reset();">
+                        <div class="form-group">
+                            <label for="productname">Product name </label>
+
+                            <input name="productname" #productname="ngModel" [(ngModel)]="Product.productName" required
+                                type="text" [class.is-invalid]="productname.invalid && productname.touched"
+                                placeholder="Product Name" class="form-control" id="productname">
+                            <div [hidden]="productname.valid||productname.untouched">
+                                <div [hidden]="!productname.hasError('required')"> Product name is Required</div>
+
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group"></div>
+                            <label for="productcategory">Product Category </label>
+                            <input name="productname" #productcategory="ngModel" [(ngModel)]="Product.productCategory"
+                                required type="text"
+                                [class.is-invalid]="productcategory.invalid &&productcategory.touched"
+                                placeholder="Product Category" class="form-control" id="productcategory">
+
+
+                            <div [hidden]="productcategory.valid ||productcategory.untouched">
+                                <div [hidden]="!productcategory.hasError('required')">Product Category</div>
+
+
+                            </div>
+                        </div>
+                        <div>
+
+                            <label for="price">product Price </label>
+                            <input name="productprice" #productprice="ngModel" [(ngModel)]="Product.productPrice"
+                                required type="number" [class.is-invalid]="productprice.invalid &&productprice.touched"
+                                class="form-control" placeholder="Product Price" id="price">
+                            <div [hidden]="productprice.valid ||productprice.untouched">
+                                <div [hidden]="!productprice.hasError('required')"></div>
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <label for="stock">Stock </label>
+                            <input name="productstock" #productstock="ngModel" [(ngModel)]="Product.noofstocks" required
+                                type="number" [class.is-invalid]="productstock.invalid &&productstock.touched"
+                                class="form-control" placeholder="Stock" id="stock">
+                            <div [hidden]="productstock.valid ||productstock.untouched">
+                                <div [hidden]="!productstock.hasError('required')"></div>
+                            </div>
+
+                        </div>
+                        <div>
+                            <label for="imgurl">Image Url </label>
+                            <input name="imgurl" #imageurl="ngModel" [(ngModel)]="Product.imageurl" type="text"
+                                class="form-control" placeholder="Image Link" id="imgurl">
+                        </div>
+                        <div>
+                            <label for="productdescription">Product Description </label>
+                            <input name="productdescription" #productdescription="ngModel"
+                                [(ngModel)]="Product.productDescription" placeholder="Product Description" type="text"
+                                class="form-control" id="productdescription">
+                        </div>
+
+                        <br />
+                        <button type="submit" class="btn btn-primary " [disabled]="!productForm"> Add Product</button>
+                    </form>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+</div>
+<div class="container">
+    <table class="table table-striped table-hover;">
+        <thead>
+            <th>productId </th>
+            <th>productCategory</th>
+            <th> productName </th>
+            <th>productPrice </th>
+            <th>noofstocks </th>
+            <th>productDescription </th>
+            <th></th>
+
+            <th></th>
+
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let product of products ">
+                <td (click)="ProductDetails(product.productId)" style="cursor: pointer;" >{{product.productId}} </td>
+                <td (click)="ProductDetails(product.productId)" style="cursor: pointer;" >{{product.productCategory}}</td>
+                <td (click)="ProductDetails(product.productId)" style="cursor: pointer;">{{product.productName}} </td>
+                <td (click)="ProductDetails(product.productId)" style="cursor: pointer;">{{product.productPrice}} </td>
+                <td (click)="ProductDetails(product.productId)" style="cursor: pointer;">{{product.noofstocks}} </td>
+
+                <td (click)="ProductDetails(product.productId)" style="cursor: pointer;">{{product.productDescription}} </td>
+
+                <td>
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#editModal" (click)="editData(product)">Edit</button>
+
+                </td>
+
+                <!-- Button trigger modal -->
+                <td><button (click)="Delete(product.productId)" type="button" class="btn btn-primary"
+                        data-toggle="modal" data-target="#exampleModalCenter">
+                        Delete
+                    </button></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="mb-3">
+                        <label for="productId" class="form-label">ID</label>
+                        <input type="number" formControlName="productId" class="form-control" id="productId">
+                    </div>
+                    <div class="mb-3">
+                        <label for="productName" class="form-label">Product Name</label>
+                        <input type="text" formControlName="productName" class="form-control" id="productName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="text" formControlName="productPrice" class="form-control" id="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <input type="text" formControlName="productCategory" class="form-control" id="category">
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="email" formControlName="noofstocks" class="form-control" id="stock">
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <input type="text" formControlName="imageurl" class="form-control" id="image">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" formControlName="productDescription" class="form-control" id="description">
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" (click)="updateData()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 style="color: red;text-align: center;" class="modal-title" id="exampleModalLongTitle">Delete</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                Are You Sure..?
+                <br>
+                Want to Delete it
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button (click)="DeleteData()" type="button" class="btn btn-primary">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

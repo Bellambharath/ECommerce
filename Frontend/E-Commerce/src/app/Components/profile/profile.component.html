@@ -1,0 +1,205 @@
+<br><br>
+<br><br><br>
+<div style="margin-left: 450px;" class="container">
+    <h2 style="font-family:  'Times New Roman', Times, serif"><b>Profile Details</b></h2>
+    <h1 style="font-family:  Tahoma,Verdana, sans-serif;">Hello,{{profile.firstName}}</h1>
+
+
+    <div class="card" style="width: 400px;">
+        <ul style="margin-left: 10px;" class="list-group list-group-flush">
+
+            <div>
+                <br>
+                <div>
+                    <span ><b style="font-family: 'Lato', sans-serif;">First Name:&nbsp;</b>{{profile.firstName}}</span>
+                    <img class="imgicon" data-toggle="modal" data-target="#exampleModalCenter"
+                        src="../../../assets/edit.png" (click)="editData()">
+                </div>
+
+            </div>
+            <hr>
+            <div>
+                <br>
+                <div>
+
+                    <span><b style="font-family: 'Lato', sans-serif;">Last Name</b>:&nbsp;{{profile.lastName}}</span>
+                    <img class="imgicon" src="../../../assets/edit.png" data-target="#exampleModalCenter1"
+                        data-toggle="modal" (click)="editData()">
+                </div>
+
+            </div>
+
+            <hr>
+            <div>
+                <br>
+                <div>
+                    <span><b style="font-family: 'Lato', sans-serif;">Email</b>:&nbsp;{{profile.email}}</span>
+
+                    <img class="imgicon" src="../../../assets/edit.png" data-target="#exampleModalCenter2"
+                        data-toggle="modal" (click)="editData()">
+                </div>
+
+            </div>
+            <hr>
+
+            <br>
+            <div>
+                <span><b style="font-family: 'Lato', sans-serif;">Security Answer</b>:&nbsp;{{profile.securityAnswer}}</span>
+
+                <img class="imgicon" src="../../../assets/edit.png" data-target="#exampleModalCenter3"
+                    data-toggle="modal" (click)="editData()">
+
+            </div>
+            <br>
+            <hr>
+            <div >
+                <span><b>Password</b>:&nbsp;**********</span>
+                <img class="imgicon" src="../../../assets/edit.png" data-target="#exampleModalCenter4"
+                    data-toggle="modal" (click)="editData()">
+
+            </div>
+            <br> 
+        </ul>
+    </div>
+    <br>
+    <br>
+    <div>
+
+
+
+
+       
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4></h4>
+                        <h2 class="modal-title" id="exampleModalLongTitle">Change your Firstname</h2>
+                        <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <form [formGroup]="formValue">
+                            <b>new firstname</b>
+                            <input  formControlName="firstName" class="form-control" type="text" id="pincode">
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-color="dark" data-dismiss="modal">Close</button>
+                        <button (click)="updateData()" type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLongTitle">Change your Lastname</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="formValue">
+                            <b>new lastname</b>
+                            <input formControlName="lastName" class="form-control" type="text" id="pincode">
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-color="dark" data-dismiss="modal">Close</button>
+                        <button (click)="updateData()" type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLongTitle">Change your email</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="formValue">
+                           <b>new email</b>
+                            <input formControlName="email" class="form-control" type="text" id="pincode">
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-color="dark" data-dismiss="modal">Close</button>
+                        <button (click)="updateData()" type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLongTitle">Change your Securityanswer</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="formValue">
+                            <b>new securityanswer</b>
+                            <input formControlName="securityAnswer" class="form-control" type="text" id="pincode">
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-color="dark" data-dismiss="modal">Close</button>
+                        <button (click)="updateData()" type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="modal fade" id="exampleModalCenter4" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLongTitle">Change your password</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <form [formGroup]="formValue">
+                            <p  class="danger">{{errormessage}}</p>
+                            <h3 style="font-weight: 600;">Current Password</h3>
+                            <input formControlName="password" class="form-control" type="text" id="pincode">
+                        </form>
+                        <form [formGroup]="formValue">
+                            <b>New password</b>
+                            <input formControlName="passwordreentry1" class="form-control" type="text" id="pincode">
+                        </form>
+                        <form [formGroup]="formValue">
+                            <b>Reenter new password:</b>
+                            <input formControlName="passwordreentry2" class="form-control" type="text" id="pincode">
+                        </form>
+                       
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-color="dark" data-dismiss="modal">Close</button>
+                        <button (click)="updatePassword()" type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">Save changes</button>
+                    </div>
+                </div>
+
+            </div>
+</div>

@@ -1,0 +1,30 @@
+regist
+login
+home-->products
+carts
+and checkout----->select for shippement
+for user--->order and order details-->shipped or not shipped
+admin--->deciding price
+admin---> can update the shipment
+--->jwt auth
+
+
+--->error handling(exceptions)
+-----> demo (3min)
+
+
+--------------------------------------------------------
+---> If limited stock need to show out of stack.
+
+--> globally unique identifier (GUID) --> order id generation
+
+//Guid newGuid = Guid.NewGuid();
+        //Console.WriteLine(newGuid+"Bharath");
+        //Console.WriteLine(newGuid);
+
+        //byte[] guidBytes = newGuid.ToByteArray();
+        //Console.WriteLine(guidBytes.ToString());
+        //string base64Guid = Convert.ToBase64String(guidBytes);
+        //Console.WriteLine(base64Guid);
+        //string shortGuid = base64Guid.Substring(0, 10);
+        //Console.WriteLine(shortGuid);

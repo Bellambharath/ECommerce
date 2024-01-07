@@ -1,0 +1,25 @@
+/* *{
+    background-color: rgb(9, 80, 80);
+} */
+.card{
+
+   
+    width: 500px;
+    margin: auto;
+    font-size: 25px;
+    
+}
+.card-title{
+    color: red;
+    text-align: center;
+}
+.row{
+    margin-top: 120px;
+    
+}
+/* #button{
+    margin-left: 100px;
+} */
+.card-text{
+    text-align: center;
+}

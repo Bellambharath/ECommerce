@@ -1,0 +1,116 @@
+/* .navbar a{
+    color:#fff;
+}
+.navbar{
+    width:100%;
+}
+.i{
+    height: 45px;
+}
+.navcolor{
+    background-color: #367588;
+   
+}
+.no-pointer-events {
+    pointer-events: none;
+}
+
+.login{
+    margin-left: 1000px;
+    color: #ffff;
+    float: right;
+}
+a p{
+    gap: 5px;
+    margin-top: 8px;
+   
+}
+hr {
+   
+    margin-left: auto;
+    margin-right: auto;
+  }
+  p {
+    margin-left: 10px;
+  }
+.logout{
+    cursor: pointer;
+  } */
+
+.navbarcolor 
+{
+    background-color: #242b3a;
+    height: 70px;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 9px;
+    align-items: center;
+
+}
+.shopingicon {
+    width: 52px;
+    height: 48px;
+    margin-top: 10px;
+    margin-left: 9px;
+    align-items: center;
+    
+
+}
+
+
+.EBGaramond{
+    font-family: EB Garamond;
+}
+
+
+.navbar-right {
+    margin-right: 20px;
+}
+
+
+.dropdown-menu {
+    margin-left: 50px;
+    margin-top: -10px;
+    width: 200px;
+}
+
+@media only screen and (min-width: 985px) {
+    .dropdown-menu {
+        margin-top: 10px;
+        
+       
+    }
+} 
+.text{
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.login{
+    color: white;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+
+@media (max-width: 985px) {
+    .navbartop {
+        /* border-style: solid;
+        border-color: rgba(0, 0, 0, 0.1); */
+        border-radius: 10px;
+        margin-left: 20px;
+        margin-right: 450px;
+        margin-bottom: 10px;
+        background-color: #242b3a;
+      }
+      .text{
+        margin-left: 10px;
+      }
+      
+  }
+  

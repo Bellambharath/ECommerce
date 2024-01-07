@@ -1,0 +1,310 @@
+using Confluent.Kafka;
+using Confluent.Kafka.Admin;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using WindowsInput.Native;
+using WindowsInput;
+using System.Text.RegularExpressions;
+
+namespace samplekafka
+{
+
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private async void Create_Topic_in_Kafka_Click(object sender, RoutedEventArgs e)
+        {
+            string Name = txt_topicname.Text;
+            try
+            {
+
+                if (!Regex.IsMatch(Name, @"^[a-zA-Z0-9._-]{1,249}$"))
+                {
+                    throw new ArgumentException(Name, "Enter Valid Topic name");
+                }
+                var config = new AdminClientConfig
+                {
+                    BootstrapServers = "localhost:9092",
+                    ClientId = "wpf-producer"
+                };
+
+                using (var adminClient = new AdminClientBuilder(config).Build())
+                {
+
+                    var topicConfig = new TopicSpecification
+                    {
+                        Name = Name,
+                        NumPartitions = 3,
+                        ReplicationFactor = 1
+                    };
+
+                    try
+                    {
+
+                        await adminClient.CreateTopicsAsync(new TopicSpecification[] { topicConfig });
+
+                        MessageBox.Show(Name, "created successfully");
+                    }
+                    catch (CreateTopicsException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+        private void Publish_Message_to_Kafka_Topic_Click(object sender, RoutedEventArgs e)
+        {
+
+            string Topicname = txt_topicname.Text;
+            string Message = txt_messageasproducer.Text;
+
+            //string Datareceived = JsonConvert.SerializeObject(Message);
+            string Datareceived = Message;
+            using (var producer = new ProducerBuilder<Null, string>(new ProducerConfig { BootstrapServers = "localhost:9092" }).Build())
+            {
+                producer.ProduceAsync(Topicname, new Message<Null, string> { Value = Datareceived });
+
+                producer.Flush(TimeSpan.FromSeconds(2));
+
+                MessageBox.Show(Topicname, "Message Published Successfully");
+            }
+        }
+
+
+
+        private void Topics_Available_in_Kafka_Click(object sender, RoutedEventArgs e)
+        {
+
+            var listTopics = GetKafkaTopicsAsync();
+            lst_availabletopics.Items.Clear();
+            foreach (string listitem in listTopics)
+            {
+                lst_availabletopics.Items.Add(listitem);
+            }
+        }
+
+
+
+        private IEnumerable<string> GetKafkaTopicsAsync()
+        {
+            var config = new ConsumerConfig
+            {
+                BootstrapServers = "localhost:9092"
+            };
+
+
+
+            using (var adminClient = new AdminClientBuilder(config).Build())
+            {
+                var metadata = adminClient.GetMetadata(TimeSpan.FromSeconds(1));
+                return metadata.Topics.Select(topic => topic.Topic).ToList();
+            }
+        }
+
+
+
+        private void StopConsumerButton_Click(object sender, EventArgs e)
+        {
+            var simulator = new InputSimulator();
+            simulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.CONTROL, VirtualKeyCode.VK_C);
+        }
+
+
+        private void txt_msgsfromconsumer_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void lst_availabletopics_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        //private void Read_Message_to_Kafka_Topic_Click(object sender, RoutedEventArgs e)
+        //{
+        //    using (var c = new ConsumerBuilder<Ignore, string>(new ConsumerConfig
+        //    {
+        //        BootstrapServers = "localhost:9092",
+        //        GroupId = "console-consumer-83024",
+        //        //GroupId = "gid-consumers",
+        //        AutoOffsetReset = AutoOffsetReset.Latest,
+        //    }).Build())
+        //    {
+        //        c.Subscribe(txt_topicname.Text);
+
+
+        //        while (true)
+        //        {
+        //            try
+        //            {
+        //                var cr = c.Consume();
+        //                txt_messagefromkafka.Text = cr.Message.Value;
+        //                if(txt_messagefromkafka.Text !=null)
+        //                {
+        //                    MessageBox.Show("Message received successfully");
+        //                    break;
+        //                }
+
+        //            }
+
+        //            catch (Exception ex)
+        //            {
+        //                MessageBox.Show(ex.Message);
+        //            }
+        //        }
+        //    }
+        //}
+
+
+
+
+        public async Task<List<string>> Consumer()
+        {
+            string topic = txt_topicname.Text;
+            List<string> messages = new List<string>();
+
+            using (var c = new ConsumerBuilder<Null, string>(new ConsumerConfig
+            {
+                BootstrapServers = "localhost:9092",
+                GroupId = "gid-consumers",
+                AutoOffsetReset = AutoOffsetReset.Latest
+            }).Build())
+            {
+                c.Subscribe(topic);
+
+                CancellationTokenSource cts = new CancellationTokenSource();
+                Console.CancelKeyPress += (_, e) =>
+                {
+                    e.Cancel = true;
+                    cts.Cancel();
+                };
+
+                try
+                {
+                    while (true)
+                    {
+                        try
+                        {
+                            var timeout = TimeSpan.FromSeconds(1); // set the timeout value to 1 second
+
+                            // var consumeTask = Task.Run(() => c.Consume(cts.Token)); // run Consume method in a separate task
+                            var consumeTask = Task.Run(() =>
+                            {
+                                try
+                                {
+                                    return c.Consume(cts.Token);
+                                }
+                                catch (OperationCanceledException)
+                                {
+                                    // Handle cancellation
+                                    return null;
+                                }
+                            });
+
+
+                            var completedTask = await Task.WhenAny(consumeTask, Task.Delay(timeout)); // wait for either Consume or timeout
+
+                            if (completedTask == consumeTask) // Consume completed
+                            {
+                                var cr = consumeTask.Result;
+                                if (cr != null)
+                                {
+                                    // process the message
+                                    messages.Add(cr.Message.Value.ToString());
+
+                                    var watermarkOffsets = c.QueryWatermarkOffsets(new TopicPartition(topic, cr.Partition), timeout);
+                                    var remainingMessages = watermarkOffsets.High - cr.Offset.Value - 1;
+                                    if (remainingMessages == 0)
+                                    {
+                                        cts.Cancel();
+                                    }
+                                }
+                                else // timeout occurred or cancellation requested
+                                {
+                                    // Handle cancellation or timeout
+                                    cts.Cancel();
+                                }
+
+                            }
+                            else // timeout occurred
+                            {
+                                throw new Exception("No messages received within the specified timeout.");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            cts.Cancel();
+                        }
+                        
+                        
+
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    c.Close();
+                }
+            }
+
+            return messages;
+        }
+
+
+        private async void Read_Message_to_Kafka_Topic_Click(object sender, RoutedEventArgs e)
+        {
+            var AllMessages = await Consumer();
+           lst_AllMessages.Items.Clear();
+            if(AllMessages != null)
+            {
+                foreach (string listitem in AllMessages)
+                {
+                    lst_AllMessages.Items.Add(listitem);
+                }
+            }
+            else
+            {
+                MessageBox.Show("There are No Messages to Consume");
+            }
+           
+
+        }
+    }
+}

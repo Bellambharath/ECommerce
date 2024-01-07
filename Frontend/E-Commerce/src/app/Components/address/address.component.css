@@ -1,0 +1,98 @@
+body {
+    background: #eee;
+    gap: 5px;
+}
+
+.card {
+    width: 40vh;
+    height: 45vh;
+    gap: 10px;
+
+}
+
+.col-md-3 {
+
+    margin-top: 27px;
+}
+
+/* .address{
+    font-family: "Amazon Ember",Arial,sans-serif;
+  } */
+#fullname {
+    text-align: center;
+    font-size: medium;
+    font-family: "Amazon Ember", Arial, sans-serif;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+}
+
+.address {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    font-size: 16px;
+    font-weight: 300;
+
+
+}
+
+.extra {
+
+    border-style: dashed;
+    border-width: 2px;
+    border-color: #C7C7C7;
+    border-radius: 2px;
+    box-sizing: border-box;
+    /* margin-top: 300px; */
+    width: 40vh;
+    height: 25vh;
+    cursor: pointer;
+}
+
+img {
+    margin: 30px 100px 0px 100px;
+    width: 7vh;
+    height: 6vh;
+    align-items: center;
+}
+
+.text-black-40 {
+    font-weight: bold;
+}
+
+h4 {
+    text-align: center;
+    color: rgb(79, 79, 165);
+}
+
+.extraforodd {
+
+    border-style: dashed;
+    border-width: 2px;
+    border-color: #C7C7C7;
+    border-radius: 2px;
+    box-sizing: border-box;
+    width: 40vh;
+    height: 45vh;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.imgforodd {
+    align-items: center;
+    margin: 70px 65px 0px 65px;
+    width: 17vh;
+    height: 16vh;
+    align-items: center;
+}
+
+.modal-footer{
+    margin-left: 0px;
+    
+    width: 100%;
+}
+.modal-content
+{
+    width: 400px;
+    border-radius: 0px;
+}

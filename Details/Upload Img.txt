@@ -1,0 +1,42 @@
+1.Create an input field of type "file" in your Angular template where the user can select an image to upload.
+<input type="file" (change)="onFileSelected($event)" accept="image/*" multiple>
+-------------------------
+2.In your component's typescript file, create a method called onFileSelected that will be triggered when the user selects an image. This method will read the selected file and create a FormData object to send to the backend.
+onFileSelected(event) {
+    let file = event.target.files[0];
+
+    let formData = new FormData();
+    formData.append('image', file);
+
+    this.http.post('/api/image', formData).subscribe(response => {
+        console.log(response);
+    });
+}
+-------------------
+Backend (.NET):
+
+1.Create an endpoint in your .NET application to handle the image upload. This endpoint should accept a POST request and have a parameter of type IFormFile to receive the image.
+
+[HttpPost("/api/image")]
+public async Task<IActionResult> UploadImage(IFormFile image)
+{
+    // Save the image to local storage or cloud storage
+    // Save the image path to the SQL database
+}
+
+2.In the UploadImage method, you can use the IFormFile parameter to save the image to a local directory or cloud storage service like AWS S3, Google Cloud Storage, or Azure Blob Storage. Once the image is saved, you can save the image path to the SQL database.
+[HttpPost("/api/image")]
+public async Task<IActionResult> UploadImage(IFormFile image)
+{
+    var filePath = Path.Combine("images", image.FileName);
+    using (var fileStream = new FileStream(filePath, FileMode.Create))
+    {
+        await image.CopyToAsync(fileStream);
+    }
+    var sql = "INSERT INTO images (path) VALUES (@path)";
+    var values = new { path = filePath };
+    con.Execute(sql, values);
+    return Ok();
+}
+--------
+3.This example assumes that you have a SQL database set up with a table called images that has a column called path to store the image path.

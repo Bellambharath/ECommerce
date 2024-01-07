@@ -1,0 +1,24 @@
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
+import { Observable } from 'rxjs';
+import { SignupService } from '../Services/signup.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthenticationGuard implements CanActivate{
+  constructor(private auth:SignupService,private router:Router,private toast:NgToastService){}
+  canActivate():boolean{
+   
+    if(this.auth.isLoggedin())
+    {
+      return true
+    }else{
+      this.toast.error({detail:"ERROR",summary:"Please Login First!"});
+      this.router.navigate(['login'])
+    return false;
+    }
+  }
+  
+}

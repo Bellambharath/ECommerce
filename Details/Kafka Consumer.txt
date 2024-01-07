@@ -1,0 +1,432 @@
+using Confluent.Kafka;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using NuGet.Protocol;
+using SayHiUsingKafka.Models;
+using System.Net;
+using static Confluent.Kafka.ConfigPropertyNames;
+
+namespace SayHiUsingKafka.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class KafkaController : ControllerBase
+    {
+
+        private readonly ProducerConfig _producerconfig;
+        private readonly ConsumerConfig _consumerconfig;
+        private readonly ILogger<KafkaController> _logger;
+
+        public KafkaController(ProducerConfig producerconfig, ConsumerConfig consumerconfig, ILogger<KafkaController> logger)
+        {
+            _producerconfig = producerconfig;
+            _consumerconfig = consumerconfig;
+            _logger = logger;
+        }
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> Producer(string topic, [FromBody] string student)
+        {
+            string Datareceived = JsonConvert.SerializeObject(student);
+
+            using (var producer = new ProducerBuilder<Null, string>(_producerconfig).Build())
+            {
+                await producer.ProduceAsync(topic, new Message<Null, string> { Value = Datareceived });
+
+                producer.Flush(TimeSpan.FromSeconds(2));
+                return Ok(true);
+            }
+
+        }
+
+        //[HttpGet]
+
+        //public ActionResult<string> Consumer(string topic)
+        //{
+
+
+
+        //    using (var consumer = new ConsumerBuilder<Null, string>(_consumerconfig).Build())
+        //    {
+
+        //        consumer.Subscribe(topic);
+        //        var consumeResult = consumer.Consume().Value;
+
+        //        var Datareceived = JsonConvert.DeserializeObject(consumeResult);
+        //        return Datareceived.ToString();
+        //    }
+        //}
+
+        [HttpGet]
+        public ActionResult<string> Consumer(string topic)
+        {
+
+            using (var consumer = new ConsumerBuilder<Null, string>(new ConsumerConfig
+            {
+                BootstrapServers = "localhost:9092",
+                //GroupId = "console-consumer-89479",
+                //GroupId = "console-consumer-67761"
+                GroupId = "console-consumer-25760",
+                //AutoOffsetReset = AutoOffsetReset.Earliest,
+
+
+            }).Build())
+            {
+                consumer.Subscribe(topic);
+               // var messages = new List<string>();
+                while (true)
+                {
+                    try
+                    {
+                        _logger.LogInformation($"waitting for message...");
+                        var consumeResult = consumer.Consume();
+                       
+                        var message = consumeResult.Message.Value;
+                        _logger.LogInformation($"Received message: {message}");
+                        var dataReceived = JsonConvert.DeserializeObject<string>(message);
+                        //messages.Add(dataReceived.ToString());
+                        return Ok(dataReceived.ToString());
+                    }
+                    catch (JsonReaderException ex)
+                    {
+                        _logger.LogError($"Error deserializing JSON: {ex.Message}");
+                    }
+                }
+                //return Ok(messages);
+
+
+
+
+            }
+
+        }
+
+    }
+}
+
+
+
+=================================================================
+using Confluent.Kafka;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using NuGet.Protocol;
+using SayHiUsingKafka.Models;
+using System.Net;
+using static Confluent.Kafka.ConfigPropertyNames;
+
+namespace SayHiUsingKafka.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class KafkaController : ControllerBase
+    {
+
+        private readonly ProducerConfig _producerconfig;
+        private readonly ConsumerConfig _consumerconfig;
+        private readonly ILogger<KafkaController> _logger;
+
+        public KafkaController(ProducerConfig producerconfig, ConsumerConfig consumerconfig, ILogger<KafkaController> logger)
+        {
+            _producerconfig = producerconfig;
+            _consumerconfig = consumerconfig;
+            _logger = logger;
+        }
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> Producer(string topic, [FromBody] string student)
+        {
+            string Datareceived = JsonConvert.SerializeObject(student);
+
+            using (var producer = new ProducerBuilder<Null, string>(_producerconfig).Build())
+            {
+                await producer.ProduceAsync(topic, new Message<Null, string> { Value = Datareceived });
+
+                producer.Flush(TimeSpan.FromSeconds(2));
+                return Ok(true);
+            }
+
+        }
+
+        //[HttpGet]
+
+        //public ActionResult<string> Consumer(string topic)
+        //{
+
+
+
+        //    using (var consumer = new ConsumerBuilder<Null, string>(_consumerconfig).Build())
+        //    {
+
+        //        consumer.Subscribe(topic);
+        //        var consumeResult = consumer.Consume().Value;
+
+        //        var Datareceived = JsonConvert.DeserializeObject(consumeResult);
+        //        return Datareceived.ToString();
+        //    }
+        //}
+
+        //[HttpGet]
+        //public ActionResult<string> Consumer(string topic)
+        //{
+
+        //    using (var consumer = new ConsumerBuilder<Null, string>(new ConsumerConfig
+        //    {
+        //        BootstrapServers = "localhost:9092",
+        //        GroupId = "console-consumer-89479",//newtopic1
+        //        //GroupId = "console-consumer-25760"
+        //        AutoOffsetReset = AutoOffsetReset.Latest
+
+
+        //    }).Build())
+        //    {
+        //        consumer.Subscribe(topic);
+        //        while (true)
+        //        {
+        //            try
+        //            {
+        //                var consumeResult = consumer.Consume();
+        //                var message = consumeResult.Message.Value;
+        //                _logger.LogInformation($" message: {message}");
+        //                var dataReceived = JsonConvert.DeserializeObject<string>(message);
+        //                return Ok(dataReceived.ToString());
+        //            }
+        //            catch (JsonReaderException ex)
+        //            {
+        //                _logger.LogError($"Error deserializing JSON: {ex.Message}");
+        //            }
+        //        }
+
+
+
+
+        //    }
+
+        //}
+
+
+        [HttpGet]
+        public ActionResult<List<string>> Consumer(string topic)
+        {
+
+            using (var c = new ConsumerBuilder<Ignore, string>(new ConsumerConfig
+            {
+                BootstrapServers = "localhost:9092",
+                GroupId = "console-consumer-89479",//newtopic1
+                //GroupId = "console-consumer-25760"
+                AutoOffsetReset = AutoOffsetReset.Latest
+
+
+            }).Build())
+            {
+                c.Subscribe(topic);
+
+                CancellationTokenSource cts = new CancellationTokenSource();
+                Console.CancelKeyPress += (_, e) =>
+                {
+                    e.Cancel = true; // prevent the process from terminating.
+                    cts.Cancel();
+                };
+                var messages = new List<string>();
+                try
+                {
+                    while (true)
+                    {
+                        try
+                        {
+                            var cr = c.Consume(cts.Token);
+                            
+                            _logger.LogInformation($"Consumed message '{cr.Message.Value}' at: '{cr.TopicPartitionOffset}'.");
+                            messages.Add(cr.Message.Value);
+                            if (cr.Message.Value==null)
+                            {
+                                break;
+                            }
+                        }
+                        catch (ConsumeException e)
+                        {
+                            _logger.LogInformation($"Error occurred:{e.Error.Reason}");
+                            return BadRequest(e.Error.Reason);
+
+                        }
+                    }
+                    return messages;
+                }
+                catch (OperationCanceledException e)
+                {
+                    // Ensure the consumer leaves the group cleanly and final offsets are committed.
+                    c.Close();
+                    return BadRequest(e.InnerException);
+                }
+
+            }
+        }
+
+
+    }
+}
+=======================================================================
+
+Perfectly Working code:
+using Confluent.Kafka;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using NuGet.Protocol;
+using SayHiUsingKafka.Models;
+using System.Net;
+using static Confluent.Kafka.ConfigPropertyNames;
+
+namespace SayHiUsingKafka.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class KafkaController : ControllerBase
+    {
+
+        private readonly ProducerConfig _producerconfig;
+        private readonly ConsumerConfig _consumerconfig;
+        private readonly ILogger<KafkaController> _logger;
+
+        public KafkaController(ProducerConfig producerconfig, ConsumerConfig consumerconfig, ILogger<KafkaController> logger)
+        {
+            _producerconfig = producerconfig;
+            _consumerconfig = consumerconfig;
+            _logger = logger;
+        }
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> Producer(string topic, [FromBody] string student)
+        {
+            string Datareceived = JsonConvert.SerializeObject(student);
+
+            using (var producer = new ProducerBuilder<Null, string>(_producerconfig).Build())
+            {
+                await producer.ProduceAsync(topic, new Message<Null, string> { Value = Datareceived });
+
+                producer.Flush(TimeSpan.FromSeconds(2));
+                return Ok(true);
+            }
+
+        }
+
+        //[HttpGet]
+
+        //public ActionResult<string> Consumer(string topic)
+        //{
+
+
+
+        //    using (var consumer = new ConsumerBuilder<Null, string>(_consumerconfig).Build())
+        //    {
+
+        //        consumer.Subscribe(topic);
+        //        var consumeResult = consumer.Consume().Value;
+
+        //        var Datareceived = JsonConvert.DeserializeObject(consumeResult);
+        //        return Datareceived.ToString();
+        //    }
+        //}
+
+        //[HttpGet]
+        //public ActionResult<string> Consumer(string topic)
+        //{
+
+        //    using (var consumer = new ConsumerBuilder<Null, string>(new ConsumerConfig
+        //    {
+        //        BootstrapServers = "localhost:9092",
+        //        GroupId = "console-consumer-89479",//newtopic1
+        //        //GroupId = "console-consumer-25760"
+        //        AutoOffsetReset = AutoOffsetReset.Latest
+
+
+        //    }).Build())
+        //    {
+        //        consumer.Subscribe(topic);
+        //        while (true)
+        //        {
+        //            try
+        //            {
+        //                var consumeResult = consumer.Consume();
+        //                var message = consumeResult.Message.Value;
+        //                _logger.LogInformation($" message: {message}");
+        //                var dataReceived = JsonConvert.DeserializeObject<string>(message);
+        //                return Ok(dataReceived.ToString());
+        //            }
+        //            catch (JsonReaderException ex)
+        //            {
+        //                _logger.LogError($"Error deserializing JSON: {ex.Message}");
+        //            }
+        //        }
+
+
+
+
+        //    }
+
+        //}
+
+
+        [HttpGet]
+        public void Consumer(string topic)
+        {
+
+            using (var c = new ConsumerBuilder<Null, string>(new ConsumerConfig
+            {
+                BootstrapServers = "localhost:9092",
+                //GroupId = "console-consumer-89479",//newtopic1
+                GroupId = "console-consumer-25760",
+                //GroupId = "console-consumer-67761",
+                AutoOffsetReset = AutoOffsetReset.Latest
+
+
+            }).Build())
+            {
+                c.Subscribe(topic);
+                _logger.LogInformation($" waitting message: ");
+                CancellationTokenSource cts = new CancellationTokenSource();
+                Console.CancelKeyPress += (_, e) =>
+                {
+                    e.Cancel = true; // prevent the process from terminating.
+                    cts.Cancel();
+                };
+                try
+                {
+                    while (true)
+                    {
+                        try
+                        {
+                            var cr = c.Consume(cts.Token);
+                            _logger.LogError($"Consumed message '{cr.Message.Value}' at: '{cr.TopicPartitionOffset}'.");
+                            //Console.WriteLine($"Consumed message '{cr.Message.Value}' at: '{cr.TopicPartitionOffset}'.");
+                        }
+                        catch (ConsumeException e)
+                        {
+                            _logger.LogError($"Error occurred: {e.Error.Reason}");
+                            //Console.WriteLine($"Error occurred: {e.Error.Reason}");
+
+                        }
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    // Ensure the consumer leaves the group cleanly and final offsets are committed.
+                    c.Close();
+                }
+            }
+        }
+
+
+    }
+}

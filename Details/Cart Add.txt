@@ -1,0 +1,19 @@
+public Cart AddCart(Cart cart)
+        {
+           
+            Cart c = _context.Cart.Where(x => (x.ProductId == cart.ProductId) && (x.UserName == cart.UserName)).First();
+
+            if (c!=null)
+            {
+                    return cart;
+               
+            }
+            else
+            {
+                _context.Cart.Add(cart);
+                _context.SaveChanges();
+                return cart;
+            }
+           
+            
+        }

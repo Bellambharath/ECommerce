@@ -1,0 +1,23 @@
+<div class="media" *ngFor="let product of productidsarrays[i];index as j">
+                                <div class="sq align-self-center">
+                                    <img class="img-fluid  my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0"
+                                        src="{{product.imageurl}}" width="135" height="135" />
+                                </div>
+                                <div class="media-body my-auto text-right">
+                                    <div class="row  my-auto flex-column flex-md-row">
+                                        <div class="col my-auto">
+                                            <h4 class="mb-0">{{product.productName}}</h4>
+                                        </div>
+                                        <!-- <div class="col my-auto">{{product.productCategory}}</div> -->
+                                        <!-- <div class="col my-auto"> <small>Size : M</small></div> -->
+                                        <!-- <div class="col my-auto">Qty : {{noofitemsarray[i][j]}}</div> -->
+                                        <div class="col my-auto">
+                                            <h5 style="margin-right: 25px;">Price:<span>{{product.productPrice| currency
+                                                    : 'INR' : 'symbol' : '1.2-2' }}</span> </h5>
+
+                                        </div> 
+                                    </div>
+                                    <hr class="my-3">
+                                </div>
+
+                            </div>

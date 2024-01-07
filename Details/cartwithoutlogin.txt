@@ -1,0 +1,152 @@
+
+
+<section *ngIf="logincheck==false" class="h-100 gradient-custom">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center my-4">
+      <div style="text-align: center;" class="container">
+        <h1 *ngIf="UserBasedCart.length === 0" style="cursor:wait;text-align: center;color: white;">Cart is Empty</h1>
+      </div>
+
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Cart - {{UserBasedCart.length}} items</h5>
+          </div>
+          <div class="card-body">
+         
+            <div class="row " *ngFor="let product of UserBasedCart;index as i ">
+
+
+              <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+           
+                <div>
+                  <input style="margin-left: -13px ;" class="form-check-input" (click)="SelectItems(i)" type="checkbox"
+                    id="checkboxNoLabel" value="" aria-label="..." />
+                </div>
+                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                  <img src="{{product.imageurl}}" class="imgicon" />
+                  <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                  </a>
+                </div>
+            
+              </div>
+
+              <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+            
+                <p><strong>{{product.productName}}</strong><span id="price">Price:₹{{product.productPrice}}</span></p>
+                <p>Category: {{product.productCategory}}</p>
+
+                <button type="button" (click)="DeleteFromtempCart(product.productId)"
+                  class="btn btn-outline-info btn-sm me-1 mb-2" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip"
+                  title="Remove item">
+                  <img style="cursor:pointer;" class="imgicon trash" src="../../../assets/trash.png">
+                </button>
+
+              
+              </div>
+
+              <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                <!-- Selection Enable & Disable -->
+                <div *ngIf="SelectArray[i]" class="d-flex mb-4 button">
+                  <!-- Decrement -->
+                  <button *ngIf="myArray[i]<0" class="btn btn-primary px-3 me-2" (click)="Decrement(i,myArray[i])">
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+                  <button *ngIf="myArray[i]==0" class="btn btn-primary px-3 me-2" disabled>
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+                  <!-- Decrement End -->
+                  <div class="form-outline">
+                    <input readonly style="width: 45px;align-items: center;" value="{{myArray[i]}}"
+                      class="form-control" />
+                    <label class="form-label" for="form1">Quantity</label>
+                  </div>
+
+                  <!-- Increment -->
+                  <button *ngIf="myArray[i]<product.noofstocks" class="btn btn-primary px-3 ms-2"
+                    (click)="Increment(i,myArray[i])">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </button>
+                  <button *ngIf="myArray[i]>=product.noofstocks" class="btn btn-primary px-3 ms-2" disabled>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </button>
+                  <!-- Increment End -->
+                </div>
+
+                <div *ngIf="SelectArray[i]==false" class="d-flex mb-4 button">
+                  <!-- Decrement -->
+                  <button disabled class="btn btn-primary px-3 me-2" disabled>
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+                  <!-- Decrement End -->
+                  <div class="form-outline">
+                    <input readonly style="width: 45px;align-items: center;" value="{{myArray[i]}}"
+                      class="form-control" />
+                    <label class="form-label" for="form1">Quantity</label>
+                  </div>
+
+                  <!-- Increment -->
+                  <button class="btn btn-primary px-3 ms-2" disabled>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </button>
+                  <!-- Increment End -->
+                </div>
+
+
+                <p *ngIf="SelectArray[i]" id="totalcost" class="text-start text-md-center">
+                  Total Cast:{{product.productPrice}}*{{myArray[i]}}=₹{{product.productPrice*myArray[i]}}
+                </p>
+
+                <!-- Price -->
+              </div>
+              <!-- Selection Enable & Disable End-->
+              <hr *ngIf="i<UserBasedCart.length-1" style="margin-left: -6px;width: 98.5%;">
+            </div>
+            <!-- Single item -->
+
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <p><strong>Expected shipping delivery</strong></p>
+            <p class="mb-0">{{originalDateofdelivery|date:'dd/MM/yyyy'}} - {{incrementedDate|date:'dd/MM/yyyy'}}</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Summary</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Total Products Quantity
+                <span>{{totalquantity}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                Total MRP
+                <span>{{totalmrp}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                <div>
+                  <strong>Total MRP</strong>
+                  <strong>
+                    <p class="mb-0">(including VAT)</p>
+                  </strong>
+                </div>
+                <span><strong>₹{{totalmrp}}</strong></span>
+              </li>
+            </ul>
+
+            <button (click)="CheckOutWithOutLogin()" type="button" class="btn btn-primary btn-lg btn-block">
+              Proceed to Buy
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
