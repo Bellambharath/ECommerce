@@ -65,6 +65,7 @@ export class ProductsComponent implements OnInit {
     })
 
     this.logincheck = this.signupservice.isLoggedin();
+    console.log(this.logincheck)
     this.role = localStorage.getItem("role") as string;
     if (this.role == "User") {
       this.rolecheck = true;
@@ -90,7 +91,7 @@ export class ProductsComponent implements OnInit {
 
     });
   }
-
+ 
 
 
 
@@ -212,7 +213,10 @@ export class ProductsComponent implements OnInit {
   refresh(){
     window.location.reload()
   }
-  
+  signin()
+  {
+    this.router.navigate(['login']);
+  }
 
  
 }

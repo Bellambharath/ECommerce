@@ -17,11 +17,11 @@ import { ProductDetailsComponent } from './Components/product-details/product-de
 import { AddressComponent } from './Components/address/address.component';
 
 import { SelectAddressComponent } from './Components/address/select-address/select-address.component';
-import { AddAddressComponent } from './Components/Address/add-address/add-address.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { MyOrdersComponent } from './Components/my-orders/my-orders.component';
 import { SummaryComponent } from './Components/summary/summary.component';
-
+import { AddAddressComponent } from './Components/Address/add-address/add-address.component';
+ 
 
 
 const routes: Routes = [

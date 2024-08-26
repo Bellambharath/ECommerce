@@ -27,6 +27,8 @@ export class CartService {
   {
     let name = localStorage.getItem('userName') as string;
     console.log(id)
+    console.log(name)
+    console.log("https://localhost:7025/api/Carts/delete?username="+name+"&id="+id)
     return this.http.delete<Cart>("https://localhost:7025/api/Carts/delete?username="+name+"&id="+id);
   }
   UpdateQuantity(index:number,value:number)

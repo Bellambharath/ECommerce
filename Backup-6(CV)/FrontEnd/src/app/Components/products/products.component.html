@@ -3,6 +3,7 @@
 <br>
 <br>
 
+
 <nav class="navbar navbar-expand-xl navbarcolor  fixed-top" style="margin-top:70px;background-color:white">
 	<div>
 		<select
@@ -14,10 +15,10 @@
 		</select>
 		<br>
 		<br>
-		<div (change)="selectChange($event)" style="margin-left:150px"> 
+		<div (change)="selectChange($event)" style="margin-left:150px">
 			<button class="weap btn btn-light"
 				style="font-family: 'Times New Roman', Times, serif;margin-right: 10px;border:solid gray"
-				*ngFor="let d of dropdown" value="{{d}}" id="one" (click)="selectChange($event)"> {{d}} &nbsp; 
+				*ngFor="let d of dropdown" value="{{d}}" id="one" (click)="selectChange($event)"> {{d}} &nbsp;
 			</button>
 		</div>
 	</div>
@@ -25,7 +26,9 @@
 
 <br>
 <br>
-<br><br><br><br>
+<span *ngIf="logincheck == false">
+	<img  class="img-discount" style="cursor: pointer;" src="../../../assets/20_PercentageOff.jpg" (click)="signin()"></span>
+<span *ngIf="logincheck == true"><img  class="img-discount" src="../../../assets/20_PercentageOff_Signin.jpg"></span>
 
 
 <div class="container-fluid">

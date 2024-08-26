@@ -1,4 +1,8 @@
-
+.img-discount{
+    padding-top: 50px;
+    width: 100%;
+    
+}
 .star-rating li {
     padding: 0;
 }
@@ -352,6 +356,7 @@ body {
     width: 200px;
     height: 200px;
 }
+
 
 .row1 {
     display: flex;

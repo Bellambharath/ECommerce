@@ -1,0 +1,51 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\ProductsApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2E271C92-0043-4700-989B-9F3F2BD9EFAC}|..\\CartApi\\CartApi.csproj|c:\\ecommerce\\ecommerce-main\\ecommerce-main\\backup-6(cv)\\backend\\cartapi\\repository\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E271C92-0043-4700-989B-9F3F2BD9EFAC}|..\\CartApi\\CartApi.csproj|c:\\ecommerce\\ecommerce-main\\ecommerce-main\\backup-6(cv)\\backend\\cartapi\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CartRepository.cs",
+              "DocumentMoniker": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\CartApi\\Repository\\CartRepository.cs",
+              "RelativeDocumentMoniker": "..\\CartApi\\Repository\\CartRepository.cs",
+              "ToolTip": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\CartApi\\Repository\\CartRepository.cs",
+              "RelativeToolTip": "..\\CartApi\\Repository\\CartRepository.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAswDkAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T05:47:19.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CartsController.cs",
+              "DocumentMoniker": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\CartApi\\Controllers\\CartsController.cs",
+              "RelativeDocumentMoniker": "..\\CartApi\\Controllers\\CartsController.cs",
+              "ToolTip": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\CartApi\\Controllers\\CartsController.cs",
+              "RelativeToolTip": "..\\CartApi\\Controllers\\CartsController.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAYwCwAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T05:46:52.829Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

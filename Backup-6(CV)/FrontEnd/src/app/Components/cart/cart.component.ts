@@ -245,7 +245,7 @@ export class CartComponent implements OnInit, AfterViewInit {
     }
   }
   DeleteFromCart(id: number) {
-
+    console.log(id)
     let user = localStorage.getItem('userName') as string;
     let deletedcart = this.cart.filter(cart => cart.productId == id);
     deletedcart[0].productId = id;

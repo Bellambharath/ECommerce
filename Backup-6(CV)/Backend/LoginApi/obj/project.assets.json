@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
+    "net8.0": {
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -10222,7 +10222,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net6.0": [
+    "net8.0": [
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.12",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.12",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.11",
@@ -10230,28 +10230,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\237892\\.nuget\\packages\\": {},
+    "C:\\Users\\BharathKumar_Bellam\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\E-Commerce Website\\Backend\\LoginApi\\LoginApi.csproj",
+      "projectUniqueName": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\LoginApi\\LoginApi.csproj",
       "projectName": "LoginApi",
-      "projectPath": "C:\\E-Commerce Website\\Backend\\LoginApi\\LoginApi.csproj",
-      "packagesPath": "C:\\Users\\237892\\.nuget\\packages\\",
-      "outputPath": "C:\\E-Commerce Website\\Backend\\LoginApi\\obj\\",
+      "projectPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\LoginApi\\LoginApi.csproj",
+      "packagesPath": "C:\\Users\\BharathKumar_Bellam\\.nuget\\packages\\",
+      "outputPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\LoginApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\237892\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\BharathKumar_Bellam\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0"
+        "net8.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -10259,8 +10259,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {}
         }
       },
@@ -10268,11 +10268,16 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
-      "net6.0": {
-        "targetAlias": "net6.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
@@ -10312,7 +10317,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

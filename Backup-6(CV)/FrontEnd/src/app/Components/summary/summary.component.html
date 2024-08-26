@@ -1,70 +1,74 @@
-<br><br><br>
 
 <body>
-    <section style="background-color: #eee;">
+    <section style="background-color: #f8f9fa;">
         <div class="container py-5">
-            <h3 style="text-align: center;color: red;font-size: large;"><b>Order Summary</b></h3>
-            <div class="row justify-content-center mb-3">
-                <div class="col-md-12 col-xl-10">
-                    <div class="card shadow-0 border rounded-3">
-                        <div class="card-body" *ngFor="let product of Products;index as i">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                    <div style="cursor: pointer;" (click)="ProductDetails(product.productId)" class="bg-image hover-zoom ripple rounded ripple-surface">
-                                        <img id="img" src="{{product.imageurl}}" />
-                                        <a href="#!">
-                                            <div class="hover-overlay">
-                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);">
-                                                </div>
-                                            </div>
-                                        </a>
+            <h3 class="text-center text-primary"><b>Order Summary</b></h3>
+            <div class="row">
+                <!-- Products Section -->
+                <div class="col-md-8">
+                    <div class="card shadow-sm border rounded-3">
+                        <div class="card-body" *ngFor="let product of Products; index as i">
+                            <div class="row mb-4">
+                                <div class="col-md-3 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                    <div (click)="ProductDetails(product.productId)" class="bg-image hover-zoom ripple rounded ripple-surface" style="cursor: pointer;">
+                                        <img id="img" src="{{product.imageurl}}" class="img-fluid" />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-6 col-xl-6">
-                                    <h5 style="cursor: pointer;" (click)="ProductDetails(product.productId)">{{product.productName}}</h5>
-
+                                <div class="col-md-9 col-lg-9 col-xl-9">
+                                    <h5 (click)="ProductDetails(product.productId)" class="text-primary" style="cursor: pointer;">{{product.productName}}</h5>
                                     <div class="mt-1 mb-0 text-muted small">
-
-                                        <span class="text"> Seller: </span>
+                                        <span> Seller: </span>
                                         <span>{{product.sellerName}}</span>
-
                                     </div>
-
-                                    <div class="d-flex flex-row align-items-center mb-1">
-                                        <h4 class="mb-1 me-1">₹{{product.productPrice}}</h4>
-                                      
+                                    <div class="d-flex flex-row align-items-center mt-2">
+                                        <h4 class="text-danger">₹{{product.productPrice}}</h4>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-                                    <div class="d-flex flex-row align-items-center mb-1">
-                                        <h4 class="mb-1 me-1 align-items-center">items selected</h4>
-                                        <h4 class="align-items-center" style="margin-left: auto;">-</h4>
-                                        <span class="align-items-center"
-                                            style="margin-left: auto;">{{NoofItemsSelected[i]}}</span>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <h6 class="mb-1">Items Selected:</h6>
+                                        <span class="badge bg-primary ms-2">{{NoofItemsSelected[i]}}</span>
                                     </div>
-
-                                    <div class="d-flex flex-row align-items-center mb-1">
-                                        <h4 class="mb-1 me-1 align-items-center">Price</h4>
-                                        <h4 class="align-items-center" style="margin-left: auto;">-</h4>
-                                        <span class="align-items-center"
-                                            style="margin-left: auto;">₹{{NoofItemsSelected[i]*product.productPrice}}</span>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <h6 class="mb-1">Price:</h6>
+                                        <h5 class="text-success ms-2">₹{{NoofItemsSelected[i] * product.productPrice}}</h5>
                                     </div>
-
-
-                                    <div *ngIf="i==Products.length-1" class="d-flex flex-column mt-4">
-                                        <h6 class="text-success">Free shipping</h6>
-                                        <button (click)="PlaceOrder()" class="btn btn-primary btn-sm"
-                                            type="button">Place
-                                            Order</button>
-                                        <button (click)="goback()" class="btn btn-outline-primary btn-sm mt-2"
-                                            type="button">
-                                            Back
-                                        </button>
-                                    </div>
-
                                 </div>
                             </div>
-                            <hr *ngIf="i!=Products.length-1">
+                            <hr *ngIf="i != Products.length - 1">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cost Details Section -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm border rounded-3">
+                        <div class="card-body">
+                            <h5 class="text-primary"><b>Cost Details</b></h5>
+                            <div class="d-flex justify-content-between">
+                                <h6>Total Cost:</h6>
+                                <h6 class="text-danger">₹{{TotalPrice}}</h6>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h6>Delivery Fee:</h6>
+                                <h6 *ngIf ="Deliveryfee >0" class="text-danger">₹{{Deliveryfee}}</h6>
+                                <h6 *ngIf ="Deliveryfee ==0" class="text-success d-flex justify-content-end">Free shipping</h6>
+                                
+                            </div>
+                            
+                            <div class="d-flex justify-content-between">
+                                <h6>Discount:</h6>
+                                <h6 class="text-danger">₹{{DiscountPrice}}</h6>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h6><b>Grand Total:</b></h6>
+                                <h6 class="text-danger"><b>₹{{GrandTotal}}</b></h6>
+                            </div>
+                            <div class="mb-3 mt-4">
+                                <input type="text" class="form-control" placeholder="Enter promo code" [(ngModel)]="promoCode">
+                                <button class="btn btn-outline-secondary btn-sm mt-2" (click)="applyPromoCode()">Apply</button>
+                            </div>
+                            <h6 class="text-success">Free shipping</h6>
+                            <button (click)="PlaceOrder()" class="btn btn-primary btn-sm mt-2" type="button">Place Order</button>
+                            <button (click)="goback()" class="btn btn-outline-primary btn-sm mt-2" type="button">Back</button>
                         </div>
                     </div>
                 </div>

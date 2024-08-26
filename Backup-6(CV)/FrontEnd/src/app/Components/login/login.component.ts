@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit {
   length: number = 0;
   constructor(private toastr: ToastrService, private sharing: SignupService,
     private router: Router, private formbuilder: FormBuilder, private Productsservice: ProductsServiceService) { }
-  ngOnInit(): void {
+ 
+    ngOnInit(): void {
+     
     //this.topbar.UserType();
     this.loginForm = this.formbuilder.group({
       username: ['', Validators.required],

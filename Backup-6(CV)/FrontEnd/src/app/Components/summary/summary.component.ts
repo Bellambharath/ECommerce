@@ -1,3 +1,314 @@
+// import { Component, OnInit } from '@angular/core';
+// import { Router } from '@angular/router';
+// import { Address } from 'src/app/Models/Address';
+// import { Buy } from 'src/app/Models/Buy';
+// import { Products } from 'src/app/Models/Products';
+// import { AddressService } from 'src/app/Services/address.service';
+// import { BuyService } from 'src/app/Services/buy.service';
+// import { CartService } from 'src/app/Services/cart.service';
+// import { ProductsServiceService } from 'src/app/Services/products-service.service';
+// import { Location } from '@angular/common';
+
+// @Component({
+//   selector: 'app-summary',
+//   templateUrl: './summary.component.html',
+//   styleUrls: ['./summary.component.css']
+// })
+// export class SummaryComponent implements OnInit {
+
+//   addresses: Address[];
+//   selectedaddress: number = 0;
+//   buy: Buy[];
+//   FinalOrderPlace: Buy = new Buy();
+//   length: number;
+//   TotalPrice: number = 0;
+//   productsstatus: Products = new Products();
+//   date = new Date();
+//   promoCode: string = ''; // New property for promo code
+
+//   Products = Array();
+//   NoofItemsSelected = Array();
+//   constructor(private addressservice: AddressService, private cartservice: CartService,
+//     private buyservice: BuyService, private productservice: ProductsServiceService,
+//     private router: Router, private location: Location) {}
+
+//   ngOnInit(): void {
+//     this.GetAllAddresses();
+//     this.GetCheckout();
+//     this.TotalProducts();
+//     this.TotalPrice = 0;
+//     this.selectedaddress = JSON.parse(localStorage.getItem('addressid') as string)
+//   }
+//   goback() {
+//     this.location.back();
+//   }
+//   GetAllAddresses() {
+//     this.addressservice.GetData().subscribe((result) => {
+//       this.addresses = result;
+//     })
+//   }
+//   AddressSelect(addressid: number) {
+//     this.selectedaddress = addressid;
+//   }
+
+//   GetCheckout() {
+//     this.buy = this.cartservice.GetCheckOut()
+//     this.GetOrderedProducts();
+//   }
+//   GetOrderedProducts() {
+//     this.productservice.GetProducts().subscribe((res) => {
+//       this.length = Object.keys(this.buy).length;
+//       for (var i = 0; i < this.length; i++) {
+//         let a = res.filter(x => x.productId == parseInt(this.buy[i].productId))
+//         this.Products.push(a[0]);
+//         this.NoofItemsSelected.push(parseInt(this.buy[i].noOfItems));
+//       }
+//     })
+//   }
+
+//   applyPromoCode() {
+//     // Implement your promo code logic here
+//     if (this.promoCode === 'DISCOUNT10') {
+//       this.TotalPrice *= 0.9; // Example: Apply a 10% discount
+//     } else {
+//       // Handle invalid promo code
+//       alert('Invalid promo code');
+//     }
+//   }
+
+//   PlaceOrder() {
+//     let user = localStorage.getItem('userName') as string;
+//     let currentDateTime = new Date();
+
+//     this.length = Object.keys(this.buy).length;
+//     this.FinalOrderPlace.addressId = this.selectedaddress;
+//     this.FinalOrderPlace.userName = user;
+//     this.FinalOrderPlace.status = 0;
+//     this.FinalOrderPlace.statusTime = currentDateTime;
+//     this.FinalOrderPlace.orderPlacedTime = currentDateTime;
+//     this.FinalOrderPlace.orderid = "orderid";
+//     this.FinalOrderPlace.productId = "";
+//     this.FinalOrderPlace.noOfItems = "";
+//     this.FinalOrderPlace.totalPrice = 0;
+//     for (var i = 0; i < this.length; i++) {
+//       this.FinalOrderPlace.totalPrice += this.buy[i].totalPrice;
+//       this.FinalOrderPlace.productId += this.buy[i].productId;
+//       this.FinalOrderPlace.noOfItems += this.buy[i].noOfItems;
+//       if (i != this.length - 1) {
+//         this.FinalOrderPlace.productId += ",";
+//         this.FinalOrderPlace.noOfItems += ",";
+//       }
+//     }
+//     this.myFunction(this.FinalOrderPlace, this.length, this.buy);
+//   }
+
+//   async myFunction(finalorder: Buy, len: number, b: Buy[]) {
+//     this.FinalOrderPlace = finalorder;
+//     this.length = len;
+//     this.buy = b;
+
+//     await this.buyservice.AddData(this.FinalOrderPlace).toPromise();
+
+//     for (var i = 0; i < this.length; i++) {
+//       let check = false;
+//       this.productsstatus.noofstocks = parseInt(this.buy[i].noOfItems);
+//       this.productsstatus.productId = parseInt(this.buy[i].productId);
+
+//       await this.productservice.UpdateStock(this.productsstatus).toPromise();
+//       const res = await this.cartservice.Delete(this.productsstatus.productId).toPromise();
+
+//       if (res && res.productId == this.productsstatus.productId) {
+//         check = true;
+//       }
+
+//       while (!check) {
+//         await new Promise(resolve => setTimeout(resolve, 1000));
+//       }
+//     }
+//     this.selectedaddress = 0;
+//     this.buy = Array();
+//     this.TotalPrice = 0;
+//     localStorage.setItem('tempproductids', JSON.stringify(this.buy));
+//     this.router.navigate(['myorders']);
+//   }
+
+//   TotalProducts() {
+//     this.buy = this.cartservice.GetCheckOut()
+//     this.length = Object.keys(this.buy).length;
+//     for (var i = 0; i < this.length; i++) {
+//       let id = parseInt(this.buy[i].productId);
+//       this.productservice.GetProducts().subscribe((result) => {
+//         let prodarray = result.filter(x => x.productId == id)
+//         this.TotalPrice += prodarray[0].productPrice;
+//       })
+//     }
+//     this.date.setMinutes(this.date.getMinutes() + 15);
+//   }
+//   ProductDetails(pid: number) {
+//     this.productservice.updateproductid(pid);
+//     let a = "productdetails";
+//     localStorage.setItem('pdetails', a)
+//     this.router.navigate(['productdetails']);
+//   }
+// }
+
+
+// import { Component, OnInit } from '@angular/core';
+// import { Router } from '@angular/router';
+// import { Address } from 'src/app/Models/Address';
+// import { Buy } from 'src/app/Models/Buy';
+// import { Products } from 'src/app/Models/Products';
+// import { AddressService } from 'src/app/Services/address.service';
+// import { BuyService } from 'src/app/Services/buy.service';
+// import { CartService } from 'src/app/Services/cart.service';
+// import { ProductsServiceService } from 'src/app/Services/products-service.service';
+// import { Location } from '@angular/common';
+
+// @Component({
+//   selector: 'app-summary',
+//   templateUrl: './summary.component.html',
+//   styleUrls: ['./summary.component.css']
+// })
+// export class SummaryComponent implements OnInit {
+
+//   addresses: Address[];
+//   selectedaddress: number = 0;
+//   buy: Buy[];
+//   FinalOrderPlace: Buy = new Buy();
+//   length: number;
+//   TotalPrice: number = 0;
+//   productsstatus: Products = new Products();
+//   date = new Date();
+//   promoCode: string = '';
+
+//   Products = Array();
+//   NoofItemsSelected = Array();
+//   constructor(private addressservice: AddressService, private cartservice: CartService,
+//     private buyservice: BuyService, private productservice: ProductsServiceService,
+//     private router: Router, private location: Location) {}
+
+//   ngOnInit(): void {
+//     this.GetAllAddresses();
+//     this.GetCheckout();
+//     this.TotalProducts();
+//     this.TotalPrice = 0;
+//     this.selectedaddress = JSON.parse(localStorage.getItem('addressid') as string)
+//   }
+//   goback() {
+//     this.location.back();
+//   }
+//   GetAllAddresses() {
+//     this.addressservice.GetData().subscribe((result) => {
+//       this.addresses = result;
+//     })
+//   }
+//   AddressSelect(addressid: number) {
+//     this.selectedaddress = addressid;
+//   }
+
+//   GetCheckout() {
+//     this.buy = this.cartservice.GetCheckOut()
+//     this.GetOrderedProducts();
+//   }
+//   GetOrderedProducts() {
+//     this.productservice.GetProducts().subscribe((res) => {
+//       this.length = Object.keys(this.buy).length;
+//       for (var i = 0; i < this.length; i++) {
+//         let a = res.filter(x => x.productId == parseInt(this.buy[i].productId))
+//         this.Products.push(a[0]);
+//         this.NoofItemsSelected.push(parseInt(this.buy[i].noOfItems));
+//       }
+//     })
+//   }
+
+//   applyPromoCode() {
+//     // Implement your promo code logic here
+//     if (this.promoCode === 'DISCOUNT10') {
+//       this.TotalPrice *= 0.9; // Example: Apply a 10% discount
+//     } else {
+//       // Handle invalid promo code
+//       alert('Invalid promo code');
+//     }
+//   }
+
+//   PlaceOrder() {
+//     let user = localStorage.getItem('userName') as string;
+//     let currentDateTime = new Date();
+
+//     this.length = Object.keys(this.buy).length;
+//     this.FinalOrderPlace.addressId = this.selectedaddress;
+//     this.FinalOrderPlace.userName = user;
+//     this.FinalOrderPlace.status = 0;
+//     this.FinalOrderPlace.statusTime = currentDateTime;
+//     this.FinalOrderPlace.orderPlacedTime = currentDateTime;
+//     this.FinalOrderPlace.orderid = "orderid";
+//     this.FinalOrderPlace.productId = "";
+//     this.FinalOrderPlace.noOfItems = "";
+//     this.FinalOrderPlace.totalPrice = 0;
+//     for (var i = 0; i < this.length; i++) {
+//       this.FinalOrderPlace.totalPrice += this.buy[i].totalPrice;
+//       this.FinalOrderPlace.productId += this.buy[i].productId;
+//       this.FinalOrderPlace.noOfItems += this.buy[i].noOfItems;
+//       if (i != this.length - 1) {
+//         this.FinalOrderPlace.productId += ",";
+//         this.FinalOrderPlace.noOfItems += ",";
+//       }
+//     }
+//     this.myFunction(this.FinalOrderPlace, this.length, this.buy);
+//   }
+
+//   async myFunction(finalorder: Buy, len: number, b: Buy[]) {
+//     this.FinalOrderPlace = finalorder;
+//     this.length = len;
+//     this.buy = b;
+
+//     await this.buyservice.AddData(this.FinalOrderPlace).toPromise();
+
+//     for (var i = 0; i < this.length; i++) {
+//       let check = false;
+//       this.productsstatus.noofstocks = parseInt(this.buy[i].noOfItems);
+//       this.productsstatus.productId = parseInt(this.buy[i].productId);
+
+//       await this.productservice.UpdateStock(this.productsstatus).toPromise();
+//       const res = await this.cartservice.Delete(this.productsstatus.productId).toPromise();
+
+//       if (res && res.productId == this.productsstatus.productId) {
+//         check = true;
+//       }
+
+//       while (!check) {
+//         await new Promise(resolve => setTimeout(resolve, 1000));
+//       }
+//     }
+//     this.selectedaddress = 0;
+//     this.buy = Array();
+//     this.TotalPrice = 0;
+//     localStorage.setItem('tempproductids', JSON.stringify(this.buy));
+//     this.router.navigate(['myorders']);
+//   }
+
+//   TotalProducts() {
+//     this.buy = this.cartservice.GetCheckOut()
+//     this.length = Object.keys(this.buy).length;
+
+//     for (var i = 0; i < this.length; i++) {
+//       let id = parseInt(this.buy[i].productId);
+//       this.productservice.GetProducts().subscribe((result) => {
+//         let prodarray = result.filter(x => x.productId == id)
+//         this.TotalPrice += prodarray[0].productPrice;
+//       })
+//     }
+//     this.date.setMinutes(this.date.getMinutes() + 15);
+//   }
+//   ProductDetails(pid: number) {
+//     this.productservice.updateproductid(pid);
+//     let a = "productdetails";
+//     localStorage.setItem('pdetails', a)
+//     this.router.navigate(['productdetails']);
+//   }
+// }
+
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/Models/Address';
@@ -8,6 +319,7 @@ import { BuyService } from 'src/app/Services/buy.service';
 import { CartService } from 'src/app/Services/cart.service';
 import { ProductsServiceService } from 'src/app/Services/products-service.service';
 import { Location } from '@angular/common';
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-summary',
@@ -22,24 +334,57 @@ export class SummaryComponent implements OnInit {
   FinalOrderPlace: Buy = new Buy();
   length: number;
   TotalPrice: number = 0;
+  GrandTotal: number = 0;
+  DiscountPrice: number = 0;
+  Deliveryfee: number = 0;
   productsstatus: Products = new Products();
   date = new Date();
+  promoCode: string = '';
 
   Products = Array();
   NoofItemsSelected = Array();
+
   constructor(private addressservice: AddressService, private cartservice: CartService,
     private buyservice: BuyService, private productservice: ProductsServiceService,
-    private router: Router,private location: Location) {}
- 
+    private router: Router, private location: Location) { }
+
   ngOnInit(): void {
     this.GetAllAddresses();
     this.GetCheckout();
+
     this.TotalProducts();
     this.TotalPrice = 0;
-    this.selectedaddress = JSON.parse(localStorage.getItem('addressid') as string)
+    this.DiscountPrice = 0;
+    this.selectedaddress = JSON.parse(localStorage.getItem('addressid') as string);
+
   }
-  goback() { 
-    this.location.back(); 
+
+  triggerConfetti() {
+    const duration = 3 * 1000; // 3 seconds
+    const end = Date.now() + duration;
+
+    (function frame() {
+      confetti({
+        particleCount: 3,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+      });
+      confetti({
+        particleCount: 3,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    }());
+  }
+
+  goback() {
+    this.location.back();
   }
   GetAllAddresses() {
     this.addressservice.GetData().subscribe((result) => {
@@ -48,31 +393,37 @@ export class SummaryComponent implements OnInit {
   }
   AddressSelect(addressid: number) {
     this.selectedaddress = addressid;
-
   }
 
   GetCheckout() {
     this.buy = this.cartservice.GetCheckOut()
     this.GetOrderedProducts();
-
   }
   GetOrderedProducts() {
-
     this.productservice.GetProducts().subscribe((res) => {
-
       this.length = Object.keys(this.buy).length;
       for (var i = 0; i < this.length; i++) {
         let a = res.filter(x => x.productId == parseInt(this.buy[i].productId))
-
         this.Products.push(a[0]);
         this.NoofItemsSelected.push(parseInt(this.buy[i].noOfItems));
       }
     })
-   
   }
 
-  PlaceOrder() {
+  applyPromoCode() {
+    // Implement your promo code logic here
+    if (this.promoCode.toLowerCase() === 'firstorder') {
+      this.DiscountPrice = this.TotalPrice * 0.2;
+      this.GrandTotal = this.TotalPrice * 0.8; // Apply a 20% discount
+      this.triggerConfetti();
+    } else {
+      // Handle invalid promo code
+      alert('Invalid promo code');
+    }
+  }
 
+
+  PlaceOrder() {
     let user = localStorage.getItem('userName') as string;
     let currentDateTime = new Date();
 
@@ -86,24 +437,19 @@ export class SummaryComponent implements OnInit {
     this.FinalOrderPlace.productId = "";
     this.FinalOrderPlace.noOfItems = "";
     this.FinalOrderPlace.totalPrice = 0;
-    for (var i = 0; i < this.length; i++) 
-    {
-      this.FinalOrderPlace.totalPrice += this.buy[i].totalPrice;
-
+    for (var i = 0; i < this.length; i++) {
+      this.FinalOrderPlace.totalPrice = this.GrandTotal;
       this.FinalOrderPlace.productId += this.buy[i].productId;
       this.FinalOrderPlace.noOfItems += this.buy[i].noOfItems;
-      if (i != this.length - 1) 
-      {
+      if (i != this.length - 1) {
         this.FinalOrderPlace.productId += ",";
         this.FinalOrderPlace.noOfItems += ",";
       }
     }
     this.myFunction(this.FinalOrderPlace, this.length, this.buy);
-    
   }
 
-  async myFunction(finalorder: Buy, len: number, b: Buy[]) 
-  {
+  async myFunction(finalorder: Buy, len: number, b: Buy[]) {
     this.FinalOrderPlace = finalorder;
     this.length = len;
     this.buy = b;
@@ -123,7 +469,6 @@ export class SummaryComponent implements OnInit {
       }
 
       while (!check) {
-      
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
     }
@@ -136,28 +481,32 @@ export class SummaryComponent implements OnInit {
 
   TotalProducts() {
     this.buy = this.cartservice.GetCheckOut()
-
     this.length = Object.keys(this.buy).length;
-
+    
     for (var i = 0; i < this.length; i++) {
       let id = parseInt(this.buy[i].productId);
       this.productservice.GetProducts().subscribe((result) => {
-
         let prodarray = result.filter(x => x.productId == id)
-
         this.TotalPrice += prodarray[0].productPrice;
+        this.GrandTotal = this.TotalPrice
+        if (this.GrandTotal <299) {
+          this.Deliveryfee = 50
+        }else{
+          console.log(this.GrandTotal)
+          this.Deliveryfee =0
+          console.log(this.Deliveryfee)
+        }
+
       })
     }
-    this.date.setMinutes(this.date.getMinutes() + 15); 
+
+    this.date.setMinutes(this.date.getMinutes() + 15);
 
   }
-  ProductDetails(pid:number)
-  {
+  ProductDetails(pid: number) {
     this.productservice.updateproductid(pid);
-    let a="productdetails";
-    localStorage.setItem('pdetails',a)
+    let a = "productdetails";
+    localStorage.setItem('pdetails', a)
     this.router.navigate(['productdetails']);
   }
-
-
 }
