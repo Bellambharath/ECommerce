@@ -10236,11 +10236,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\ProductsApi\\ProductsApi.csproj",
+      "projectUniqueName": "C:\\ECommerce\\Backup-6(CV)\\Backend\\ProductsApi\\ProductsApi.csproj",
       "projectName": "ProductsApi",
-      "projectPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\ProductsApi\\ProductsApi.csproj",
+      "projectPath": "C:\\ECommerce\\Backup-6(CV)\\Backend\\ProductsApi\\ProductsApi.csproj",
       "packagesPath": "C:\\Users\\BharathKumar_Bellam\\.nuget\\packages\\",
-      "outputPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\ProductsApi\\obj\\",
+      "outputPath": "C:\\ECommerce\\Backup-6(CV)\\Backend\\ProductsApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -10317,7 +10317,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

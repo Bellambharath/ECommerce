@@ -1,78 +1,102 @@
-
-<body>
-    <section style="background-color: #f8f9fa;">
-        <div class="container py-5">
-            <h3 class="text-center text-primary"><b>Order Summary</b></h3>
-            <div class="row">
-                <!-- Products Section -->
-                <div class="col-md-8">
-                    <div class="card shadow-sm border rounded-3">
-                        <div class="card-body" *ngFor="let product of Products; index as i">
-                            <div class="row mb-4">
-                                <div class="col-md-3 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                                    <div (click)="ProductDetails(product.productId)" class="bg-image hover-zoom ripple rounded ripple-surface" style="cursor: pointer;">
-                                        <img id="img" src="{{product.imageurl}}" class="img-fluid" />
-                                    </div>
-                                </div>
-                                <div class="col-md-9 col-lg-9 col-xl-9">
-                                    <h5 (click)="ProductDetails(product.productId)" class="text-primary" style="cursor: pointer;">{{product.productName}}</h5>
-                                    <div class="mt-1 mb-0 text-muted small">
-                                        <span> Seller: </span>
-                                        <span>{{product.sellerName}}</span>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center mt-2">
-                                        <h4 class="text-danger">₹{{product.productPrice}}</h4>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <h6 class="mb-1">Items Selected:</h6>
-                                        <span class="badge bg-primary ms-2">{{NoofItemsSelected[i]}}</span>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <h6 class="mb-1">Price:</h6>
-                                        <h5 class="text-success ms-2">₹{{NoofItemsSelected[i] * product.productPrice}}</h5>
-                                    </div>
+<section style="background-color: #f8f9fa;">
+    <div class="container py-5">
+        <h3 class="text-center text-primary"><b>Order Summary</b></h3>
+        <div class="row">
+            <!-- Products Section -->
+            <div class="col-md-8">
+                <div class="card shadow-sm border rounded-3">
+                    <div class="card-body" *ngFor="let product of Products; index as i">
+                        <div class="row mb-4">
+                            <div class="col-md-3 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                <div (click)="ProductDetails(product.productId)"
+                                    class="bg-image hover-zoom ripple rounded ripple-surface" style="cursor: pointer;">
+                                    <img id="img" src="{{product.imageurl}}" class="img-fluid" />
                                 </div>
                             </div>
-                            <hr *ngIf="i != Products.length - 1">
+                            <div class="col-md-9 col-lg-9 col-xl-9">
+                                <h5 (click)="ProductDetails(product.productId)" class="text-primary"
+                                    style="cursor: pointer;">{{product.productName}}</h5>
+                                <div class="mt-1 mb-0 text-muted small">
+                                    <span> Seller: </span>
+                                    <span>{{product.sellerName}}</span>
+                                </div>
+                                <div class="d-flex flex-row align-items-center mt-2">
+                                    <h4 class="text-danger">₹{{product.productPrice}}</h4>
+                                </div>
+                                <div class="d-flex flex-row align-items-center">
+                                    <h6 class="mb-1">Items Selected:</h6>
+                                    <span class="badge bg-primary ms-2">{{NoofItemsSelected[i]}}</span>
+                                </div>
+                                <div class="d-flex flex-row align-items-center">
+                                    <h6 class="mb-1">Price:</h6>
+                                    <h5 class="text-success ms-2">₹{{NoofItemsSelected[i] * product.productPrice}}
+                                    </h5>
+                                </div>
+                            </div>
                         </div>
+                        <hr *ngIf="i != Products.length - 1">
                     </div>
                 </div>
+            </div>
 
-                <!-- Cost Details Section -->
-                <div class="col-md-4">
-                    <div class="card shadow-sm border rounded-3">
-                        <div class="card-body">
-                            <h5 class="text-primary"><b>Cost Details</b></h5>
-                            <div class="d-flex justify-content-between">
-                                <h6>Total Cost:</h6>
-                                <h6 class="text-danger">₹{{TotalPrice}}</h6>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <h6>Delivery Fee:</h6>
-                                <h6 *ngIf ="Deliveryfee >0" class="text-danger">₹{{Deliveryfee}}</h6>
-                                <h6 *ngIf ="Deliveryfee ==0" class="text-success d-flex justify-content-end">Free shipping</h6>
-                                
-                            </div>
-                            
-                            <div class="d-flex justify-content-between">
-                                <h6>Discount:</h6>
-                                <h6 class="text-danger">₹{{DiscountPrice}}</h6>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <h6><b>Grand Total:</b></h6>
-                                <h6 class="text-danger"><b>₹{{GrandTotal}}</b></h6>
-                            </div>
-                            <div class="mb-3 mt-4">
-                                <input type="text" class="form-control" placeholder="Enter promo code" [(ngModel)]="promoCode">
-                                <button class="btn btn-outline-secondary btn-sm mt-2" (click)="applyPromoCode()">Apply</button>
-                            </div>
-                            <h6 class="text-success">Free shipping</h6>
-                            <button (click)="PlaceOrder()" class="btn btn-primary btn-sm mt-2" type="button">Place Order</button>
-                            <button (click)="goback()" class="btn btn-outline-primary btn-sm mt-2" type="button">Back</button>
+            <!-- Cost Details Section -->
+            <div class="col-md-4">
+                <div class="card shadow-sm border rounded-3">
+                    <div class="card-body">
+                        <h5 class="text-primary"><b>Cost Details</b></h5>
+                        <div class="d-flex justify-content-between">
+                            <h6>Total Cost:</h6>
+                            <h6 class="text-danger">₹{{TotalPrice}}</h6>
                         </div>
+                        <div class="d-flex justify-content-between">
+                            <h6>Delivery Fee:</h6>
+                            <h6 *ngIf="Deliveryfee >0" class="text-danger">₹{{Deliveryfee}}</h6>
+                            <h6 *ngIf="Deliveryfee ==0" class="text-success d-flex justify-content-end">Free
+                                shipping</h6>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <h6>Discount:</h6>
+                            <h6 class="text-danger">₹{{DiscountPrice}}</h6>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h6><b>Grand Total:</b></h6>
+                            <h6 class="text-danger"><b>₹{{GrandTotal}}</b></h6>
+                        </div>
+                        <div class="mb-3 mt-4">
+                            <label for="promoCodeDropdown" class="form-label">Select a Promo Code</label>
+                            <select id="promoCodeDropdown" class="form-select" [(ngModel)]="selectedPromoCode"
+                                (change)="onPromoCodeChange()">
+                                <!-- <option value="" disabled selected>Select a promo code</option> -->
+                                <option *ngFor="let promo of promoCodes" [value]="promo.couponcode">
+                                    {{ promo.couponcode }}
+                                </option>
+                            </select>
+
+                            <div *ngIf="promoDescription" class="mt-2">
+                                <small class="text-muted">{{ promoDescription }}</small>
+                            </div>
+
+                            <button class="btn btn-outline-secondary btn-sm mt-2"
+                                (click)="applyPromoCode()">Apply</button>
+                        </div>
+
+
+                        <!-- <div class="mb-3 mt-4">
+                                <input type="text" class="form-control" placeholder="Enter promo code"
+                                    [(ngModel)]="promoCode">
+                                <button class="btn btn-outline-secondary btn-sm mt-2"
+                                    (click)="applyPromoCode()">Apply</button>
+                            </div> -->
+                        <h6 class="text-success">Free shipping</h6>
+                        <button (click)="PlaceOrder()" class="btn btn-primary btn-sm mt-2" type="button">Place
+                            Order</button>
+                        <button (click)="goback()" class="btn btn-outline-primary btn-sm mt-2"
+                            type="button">Back</button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</body>
+    </div>
+</section>

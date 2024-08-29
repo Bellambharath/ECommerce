@@ -1,12 +1,35 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\ProductsApi\\",
+  "WorkspaceRootPath": "C:\\ECommerce\\Backup-6(CV)\\Backend\\ProductsApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2E271C92-0043-4700-989B-9F3F2BD9EFAC}|..\\CartApi\\CartApi.csproj|c:\\ecommerce\\ecommerce-main\\ecommerce-main\\backup-6(cv)\\backend\\cartapi\\repository\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DD1434DE-655E-4A71-BF24-FBD42DF156F0}|..\\BuyApi\\BuyApi.csproj|c:\\ecommerce\\backup-6(cv)\\backend\\buyapi\\models\\buy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E271C92-0043-4700-989B-9F3F2BD9EFAC}|..\\CartApi\\CartApi.csproj|c:\\ecommerce\\ecommerce-main\\ecommerce-main\\backup-6(cv)\\backend\\cartapi\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DD1434DE-655E-4A71-BF24-FBD42DF156F0}|..\\BuyApi\\BuyApi.csproj|c:\\ecommerce\\backup-6(cv)\\backend\\buyapi\\models\\couponcodes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD1434DE-655E-4A71-BF24-FBD42DF156F0}|..\\BuyApi\\BuyApi.csproj|c:\\ecommerce\\backup-6(cv)\\backend\\buyapi\\controllers\\couponcodescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD1434DE-655E-4A71-BF24-FBD42DF156F0}|..\\BuyApi\\BuyApi.csproj|c:\\ecommerce\\backup-6(cv)\\backend\\buyapi\\repository\\buyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD1434DE-655E-4A71-BF24-FBD42DF156F0}|..\\BuyApi\\BuyApi.csproj|c:\\ecommerce\\backup-6(cv)\\backend\\buyapi\\data\\buyapicontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD1434DE-655E-4A71-BF24-FBD42DF156F0}|..\\BuyApi\\BuyApi.csproj|c:\\ecommerce\\backup-6(cv)\\backend\\buyapi\\repository\\ibuyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD1434DE-655E-4A71-BF24-FBD42DF156F0}|..\\BuyApi\\BuyApi.csproj|c:\\ecommerce\\backup-6(cv)\\backend\\buyapi\\controllers\\buyscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88CDD6EC-2CE7-4BAE-84D6-676379FB81E1}|ProductsApi.csproj|c:\\ecommerce\\backup-6(cv)\\backend\\productsapi\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88CDD6EC-2CE7-4BAE-84D6-676379FB81E1}|ProductsApi.csproj|solutionrelative:controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88CDD6EC-2CE7-4BAE-84D6-676379FB81E1}|ProductsApi.csproj|c:\\ecommerce\\backup-6(cv)\\backend\\productsapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88CDD6EC-2CE7-4BAE-84D6-676379FB81E1}|ProductsApi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,27 +44,119 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CartRepository.cs",
-              "DocumentMoniker": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\CartApi\\Repository\\CartRepository.cs",
-              "RelativeDocumentMoniker": "..\\CartApi\\Repository\\CartRepository.cs",
-              "ToolTip": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\CartApi\\Repository\\CartRepository.cs",
-              "RelativeToolTip": "..\\CartApi\\Repository\\CartRepository.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAswDkAAAAeAAAA",
+              "Title": "Buy.cs",
+              "DocumentMoniker": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Models\\Buy.cs",
+              "RelativeDocumentMoniker": "..\\BuyApi\\Models\\Buy.cs",
+              "ToolTip": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Models\\Buy.cs",
+              "RelativeToolTip": "..\\BuyApi\\Models\\Buy.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAzwAkAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T05:47:19.012Z",
+              "WhenOpened": "2024-08-27T17:16:34.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BuyApiContext.cs",
+              "DocumentMoniker": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Data\\BuyApiContext.cs",
+              "RelativeDocumentMoniker": "..\\BuyApi\\Data\\BuyApiContext.cs",
+              "ToolTip": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Data\\BuyApiContext.cs",
+              "RelativeToolTip": "..\\BuyApi\\Data\\BuyApiContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T16:39:48.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CouponCodesController.cs",
+              "DocumentMoniker": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Controllers\\CouponCodesController.cs",
+              "RelativeDocumentMoniker": "..\\BuyApi\\Controllers\\CouponCodesController.cs",
+              "ToolTip": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Controllers\\CouponCodesController.cs",
+              "RelativeToolTip": "..\\BuyApi\\Controllers\\CouponCodesController.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAwBsAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T16:30:44.694Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CartsController.cs",
-              "DocumentMoniker": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\CartApi\\Controllers\\CartsController.cs",
-              "RelativeDocumentMoniker": "..\\CartApi\\Controllers\\CartsController.cs",
-              "ToolTip": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\CartApi\\Controllers\\CartsController.cs",
-              "RelativeToolTip": "..\\CartApi\\Controllers\\CartsController.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAYwCwAAAAkAAAA",
+              "Title": "CouponCodes.cs",
+              "DocumentMoniker": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Models\\CouponCodes.cs",
+              "RelativeDocumentMoniker": "..\\BuyApi\\Models\\CouponCodes.cs",
+              "ToolTip": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Models\\CouponCodes.cs",
+              "RelativeToolTip": "..\\BuyApi\\Models\\CouponCodes.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T05:46:52.829Z"
+              "WhenOpened": "2024-08-27T16:24:41.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IBuyRepository.cs",
+              "DocumentMoniker": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Repository\\IBuyRepository.cs",
+              "RelativeDocumentMoniker": "..\\BuyApi\\Repository\\IBuyRepository.cs",
+              "ToolTip": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Repository\\IBuyRepository.cs",
+              "RelativeToolTip": "..\\BuyApi\\Repository\\IBuyRepository.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAArwAoAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T16:15:56.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BuyRepository.cs",
+              "DocumentMoniker": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Repository\\BuyRepository.cs",
+              "RelativeDocumentMoniker": "..\\BuyApi\\Repository\\BuyRepository.cs",
+              "ToolTip": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Repository\\BuyRepository.cs",
+              "RelativeToolTip": "..\\BuyApi\\Repository\\BuyRepository.cs",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAowFoAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T16:13:45.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\ECommerce\\Backup-6(CV)\\Backend\\ProductsApi\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\ECommerce\\Backup-6(CV)\\Backend\\ProductsApi\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "Controllers\\ProductsController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAC8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T16:02:29.921Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BuysController.cs",
+              "DocumentMoniker": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Controllers\\BuysController.cs",
+              "RelativeDocumentMoniker": "..\\BuyApi\\Controllers\\BuysController.cs",
+              "ToolTip": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\Controllers\\BuysController.cs",
+              "RelativeToolTip": "..\\BuyApi\\Controllers\\BuysController.cs",
+              "ViewState": "AQIAAD8AAAAAAAAAAAArwE8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T16:01:01.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\ECommerce\\Backup-6(CV)\\Backend\\ProductsApi\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\ECommerce\\Backup-6(CV)\\Backend\\ProductsApi\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T12:40:35.543Z",
+              "EditorCaption": ""
             }
           ]
         }

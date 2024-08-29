@@ -15,5 +15,6 @@ namespace BuyApi.Data
         }
 
         public DbSet<BuyApi.Models.Buy> Buy { get; set; } = default!;
+        public DbSet<BuyApi.Models.CouponCodes> CouponCodes { get; set; } = default!;
     }
 }

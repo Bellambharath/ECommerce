@@ -10236,11 +10236,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\CartApi\\CartApi.csproj",
+      "projectUniqueName": "C:\\ECommerce\\Backup-6(CV)\\Backend\\CartApi\\CartApi.csproj",
       "projectName": "CartApi",
-      "projectPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\CartApi\\CartApi.csproj",
+      "projectPath": "C:\\ECommerce\\Backup-6(CV)\\Backend\\CartApi\\CartApi.csproj",
       "packagesPath": "C:\\Users\\BharathKumar_Bellam\\.nuget\\packages\\",
-      "outputPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\CartApi\\obj\\",
+      "outputPath": "C:\\ECommerce\\Backup-6(CV)\\Backend\\CartApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -10317,7 +10317,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

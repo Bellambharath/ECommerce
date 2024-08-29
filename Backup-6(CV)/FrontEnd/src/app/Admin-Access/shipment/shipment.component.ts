@@ -5,7 +5,6 @@ import { Buy } from 'src/app/Models/Buy';
 import { Cart } from 'src/app/Models/Cart';
 import { Products } from 'src/app/Models/Products';
 import { BuyService } from 'src/app/Services/buy.service';
-import { CartService } from 'src/app/Services/cart.service';
 import { ProductsServiceService } from 'src/app/Services/products-service.service';
 
 @Component({
@@ -24,7 +23,7 @@ export class ShipmentComponent implements OnInit {
   Quantityarrays: string[][] = [];
 
 
-  constructor(private buyservice: BuyService, private cartservice: CartService,
+  constructor(private buyservice: BuyService,
     private productservice: ProductsServiceService,private router: Router) { }
   ngOnInit(): void {
     this.GetAllData();

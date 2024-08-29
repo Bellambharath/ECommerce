@@ -82,5 +82,18 @@ namespace BuyApi.Repository
 
 
         }
+
+        public bool IsFirstOrder(string userName)
+        {
+            try
+            {
+                bool userExist = _context.Buy.Any(x => x.UserName == userName);
+                return !userExist;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

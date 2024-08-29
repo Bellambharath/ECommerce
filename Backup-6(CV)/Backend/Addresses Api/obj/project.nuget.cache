@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TrU5ObXMiRs=",
+  "dgSpecHash": "Hy0yuYpZAd8=",
   "success": true,
-  "projectFilePath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\Addresses Api\\Addresses Api.csproj",
+  "projectFilePath": "C:\\ECommerce\\Backup-6(CV)\\Backend\\Addresses Api\\Addresses Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\BharathKumar_Bellam\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\BharathKumar_Bellam\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

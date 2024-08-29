@@ -102,7 +102,6 @@ popuptrack:Buy=new Buy();
 
       let splitproductids= this.shippingdata[i].productId.split(",");
       let splitnoofitems= this.shippingdata[i].noOfItems.split(",");
-      
       for(var j=0;j<splitproductids.length;j++)
       {
       

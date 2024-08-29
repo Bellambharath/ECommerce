@@ -91,7 +91,8 @@ body {
 .bg-image img {
     width: 100%;
     height: auto;
-    max-width: 150px; /* Adjust the max width of the images */
+    max-width: 150px;
+    /* Adjust the max width of the images */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -116,7 +117,8 @@ body {
 }
 
 .card-body {
-    padding: 1rem; /* Adjust the padding within the cards */
+    padding: 1rem;
+    /* Adjust the padding within the cards */
 }
 
 .card-body:hover {
@@ -133,3 +135,20 @@ body {
         border-left: none !important;
     }
 }
+
+.mat-snack-bar-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    width: auto !important;
+    min-width: 200px !important; /* Adjust as necessary */
+    z-index: 1000 !important;
+  }
+  
+  
+  

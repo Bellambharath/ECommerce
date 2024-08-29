@@ -163,7 +163,6 @@ export class CartComponent implements OnInit, AfterViewInit {
 
 
   GetCart() {
-
     this.cartservice.Get().subscribe((res) => {
 
       this.cart = res;

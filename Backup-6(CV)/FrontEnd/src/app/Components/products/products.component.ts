@@ -19,19 +19,12 @@ export class ProductsComponent implements OnInit {
 
   @Output() messageEvent = new EventEmitter<string>();
 
-
   sendMessage() {
     this.messageEvent.emit('Hello from Child');
 
   }
 
-
-
-
-
-
   productidarray = Array();
-
   products: Products[];
   cart: Cart[];
   c: Cart = new Cart();

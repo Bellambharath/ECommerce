@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\BuyApi\\BuyApi.csproj": {}
+    "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\BuyApi.csproj": {}
   },
   "projects": {
-    "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\BuyApi\\BuyApi.csproj": {
+    "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\BuyApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\BuyApi\\BuyApi.csproj",
+        "projectUniqueName": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\BuyApi.csproj",
         "projectName": "BuyApi",
-        "projectPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\BuyApi\\BuyApi.csproj",
+        "projectPath": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\BuyApi.csproj",
         "packagesPath": "C:\\Users\\BharathKumar_Bellam\\.nuget\\packages\\",
-        "outputPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\BuyApi\\obj\\",
+        "outputPath": "C:\\ECommerce\\Backup-6(CV)\\Backend\\BuyApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -52,17 +52,17 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[6.0.12, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.12, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[6.0.11, )"
+              "version": "[8.0.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

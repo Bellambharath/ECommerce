@@ -8,5 +8,6 @@ namespace BuyApi.Repository
         Task<Buy> AddAsync(Buy buyingdetails);
         Buy UpdateBuy(Buy buy);
         bool DeleteBuy(int id);
+        bool IsFirstOrder(string userName);
     }
 }

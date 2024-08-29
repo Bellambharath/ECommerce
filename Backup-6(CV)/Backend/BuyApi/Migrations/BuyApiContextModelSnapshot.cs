@@ -17,10 +17,10 @@ namespace BuyApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.12")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("BuyApi.Models.Buy", b =>
                 {
@@ -28,7 +28,7 @@ namespace BuyApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BuyId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BuyId"));
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
@@ -64,6 +64,30 @@ namespace BuyApi.Migrations
                     b.HasKey("BuyId");
 
                     b.ToTable("Buy");
+                });
+
+            modelBuilder.Entity("BuyApi.Models.CouponCodes", b =>
+                {
+                    b.Property<int>("CouponId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CouponId"));
+
+                    b.Property<string>("Couponcode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsApplicable")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CouponId");
+
+                    b.ToTable("CouponCodes");
                 });
 #pragma warning restore 612, 618
         }

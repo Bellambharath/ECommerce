@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\LoginApi\\LoginApi.csproj": {}
+    "C:\\ECommerce\\Backup-6(CV)\\Backend\\LoginApi\\LoginApi.csproj": {}
   },
   "projects": {
-    "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\LoginApi\\LoginApi.csproj": {
+    "C:\\ECommerce\\Backup-6(CV)\\Backend\\LoginApi\\LoginApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\LoginApi\\LoginApi.csproj",
+        "projectUniqueName": "C:\\ECommerce\\Backup-6(CV)\\Backend\\LoginApi\\LoginApi.csproj",
         "projectName": "LoginApi",
-        "projectPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\LoginApi\\LoginApi.csproj",
+        "projectPath": "C:\\ECommerce\\Backup-6(CV)\\Backend\\LoginApi\\LoginApi.csproj",
         "packagesPath": "C:\\Users\\BharathKumar_Bellam\\.nuget\\packages\\",
-        "outputPath": "C:\\ECommerce\\ECommerce-main\\ECommerce-main\\Backup-6(CV)\\Backend\\LoginApi\\obj\\",
+        "outputPath": "C:\\ECommerce\\Backup-6(CV)\\Backend\\LoginApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

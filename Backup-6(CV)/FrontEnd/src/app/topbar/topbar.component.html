@@ -35,15 +35,17 @@
 				</div>
 			</li>
 			<li class="nav-item">
-				<a style="height: 10px;margin-top: 10px;" class="nav-link login" *ngIf="!auth.isLoggedin()" href="login">
+				<a style="height: 10px;margin-top: 10px;" class="nav-link login" *ngIf="!auth.isLoggedin()"
+					href="login">
 					<i class="fa fa-sign-in" aria-hidden="true">Login</i>
 				</a>
 			</li>
 			<li *ngIf="usercheck" class="nav-item">
-				
-				<a style="height: 10px;margin-top: 18px;margin-right: 70px;" class="nav-link login" *ngIf="auth.isLoggedin()" (click)="onLogOut()">
+
+				<a style="height: 10px;margin-top: 18px;margin-right: 70px;" class="nav-link login"
+					*ngIf="auth.isLoggedin()" (click)="onLogOut()">
 					<i class="fa fa-sign-out" aria-hidden="true"><span>Logout</span></i>
-					
+
 				</a>
 			</li>
 			<li class="nav-item">
@@ -53,10 +55,6 @@
 				</a>
 			</li>
 			&nbsp;&nbsp;&nbsp;
-
-
-
-
 			<li *ngIf="auth.isLoggedin()&&!usercheck" class="nav-item" style="font-size:25px;margin-top: 20px;">
 				<div class="dropdown show dropleft">
 					<a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
